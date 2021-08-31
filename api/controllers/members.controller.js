@@ -1,7 +1,6 @@
 const mongoose = require("mongoose")
 const createError = require('http-errors');
 const Member = require('../models/member.model');
-const { create } = require("../models/member.model");
 
 
 module.exports.create = (req, res, next) => {
@@ -24,35 +23,20 @@ module.exports.list = (req, res, next) => {
 }
 
 module.exports.detail = (req, res, next) => {
-    Member.findById(req.params.id)
-    .then(member => {
-        if(!member) {
-            next(createError(404, 'Member not found'))
-        }else{
-            res.json(member)
-        }
-    })
+    res.json(req.member)
 }
 
-/* module.exports.edit = (req, res, next) => {
-    const data = { name, age } = req.body;
+module.exports.edit = (req, res, next) => {
+    const data = { name, age, profilePicture, interests } = req.body;
     const member = req.member;
-        Member.findByIdAndUpdate(req.params.id, data, {new: true, runValidators: true})
     Object.assign(member, data);
     member.save()
         .then(member => res.json(member))
         .catch(error => next(error))
-} */
+}
 
- module.exports.edit = (req, res, next) => {
-     const data = { name, age, profilePicture, interests } = req.body
-    Member.findByIdAndUpdate(req.params.id, data, {new: true, runValidators: true})
-    .then(member => {
-        if(!member) {
-            next(createError(404,"Member not found"))
-        } else {
-            res.json(member)
-        }
-    })
+module.exports.delete = (req, res, next) => {
+    Member.deleteOne({_id: req.member.id})
+    .then(() => res.status(204).send())
     .catch(error => next(error))
 }
