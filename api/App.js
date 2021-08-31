@@ -1,16 +1,28 @@
 require('dotenv').config();
+
 const express = require('express');
+const app = express();
+
 const mongoose = require('mongoose');
-const createError = require('http-errors')
+const createError = require('http-errors');
+const helmet = require('helmet');
+const logger = require('morgan');
 
-const app = express()
 
 
+require('./config/db.config');
 
 /** Middlewares */
-app.use(express.json())
+app.use(logger('dev'))
+app.use(express.json());
+app.use(helmet());
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(`${__dirname}/public`));
 
 /** Routes*/
+const routes = require('./config/routes.config');
+app.use('/api', routes);
 
 /** Error Handling */
 
