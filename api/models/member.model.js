@@ -30,7 +30,7 @@ const memberSchema = new Schema({
     interests: {
         type: [{
             type: String,
-            enum: interests.map((i) => i.id)
+            enum: interests
         }],
         validate: {
             validator: function (interests) {

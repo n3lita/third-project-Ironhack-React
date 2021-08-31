@@ -1,60 +1,16 @@
 [
-    {
-    "art": {
-        "text": "Art",
-        "image": "/img/interests/art.png"
-    },
-    "dance": {
-        "text": "Dance",
-        "image": "/img/interests/dancer.png"
-    },
-    "fashion": {
-        "text": "Fashion",
-        "image": "/img/interests/fashion.png"
-    },
-    "happyhour": {
-        "text": "Happy Hour",
-        "image": "/img/interests/happyhour.png"
-    },
-    "party": {
-        "text": "Party",
-        "image": "/img/interests/party.png"
-    },
-    "yoga": {
-        "text": "Yoga",
-        "image": "/img/interests/yoga.png"
-    },
-    "maryjane": {
-        "text": "Mary Jane",
-        "image": "/img/interests/marijane.png"
-    },
-    "singles": {
-        "text": "Singles",
-        "image": "/img/interests/single.png"
-    },
-    "married": {
-        "text": "Married",
-        "image": "/img/interests/married.png"
-    },
-    "withkids": {
-        "text": "Kids",
-        "image": "/img/interests/withkids.png"
-    },
-    "volunteering": {
-        "text": "Volunteering",
-        "image": "/img/interests/volunteering.png"
-    },
-    "travel": {
-        "text": "Travel",
-        "image": "/img/interests/yoga.png"
-    },
-    "fitness": {
-        "text": "Fitness",
-        "image": "/img/interests/fitness.png"
-    }, 
-    "rooftop": {
-        "text": "Rooftops",
-        "image": "/img/interests/rooftop.png"
-    }
-    }
+    "art",
+    "dance",
+    "fashion",
+    "happy hour",
+    "party",
+    "yoga",
+    "maryjane",
+    "singles",
+    "married",
+    "with kids",
+    "volunteering",
+    "travel",
+    "fitness",
+    "rooftops"
 ]
