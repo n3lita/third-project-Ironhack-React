@@ -1,4 +1,5 @@
-{
+[
+    {
     "art": {
         "text": "Art",
         "image": "/img/interests/art.png"
@@ -55,4 +56,5 @@
         "text": "Rooftops",
         "image": "/img/interests/rooftop.png"
     }
-}
+    }
+]

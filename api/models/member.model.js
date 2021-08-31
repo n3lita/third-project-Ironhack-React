@@ -28,8 +28,16 @@ const memberSchema = new Schema({
         default: ""
     },
     interests: {
-        type: String,
-        enum: Object.keys(interests)
+        type: [{
+            type: String,
+            enum: interests.map((i) => i.id)
+        }],
+        validate: {
+            validator: function (interests) {
+                return interests.length >= 1;
+            },
+            message: 'Choose at least one interest'
+        }
     },
     city: {
         type: String,
@@ -65,8 +73,8 @@ const memberSchema = new Schema({
 memberSchema.pre('save', function (next) {
     if (this.isModified('password')) {
         bcrypt.hash(this.password, 10).then((hash) => {
-        this.password = hash;
-        next();
+            this.password = hash;
+            next();
         });
     } else {
         next();
@@ -75,7 +83,7 @@ memberSchema.pre('save', function (next) {
 
 memberSchema.methods.checkPassword = function (passwordToCheck) {
     return bcrypt.compare(passwordToCheck, this.password);
-  };
+};
 
 const Member = mongoose.model("Member", memberSchema);
 module.exports = Member;
