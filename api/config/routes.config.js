@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const members = require('../controllers/members.controller')
 
-router.get('/users', members.list)
-
+router.post('/register', members.create);
+router.get('/members', members.list)
+router.get('/members/:id', members.detail)
 module.exports = router
 
