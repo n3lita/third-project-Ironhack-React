@@ -13,5 +13,8 @@ router.put('/members/:memberId',  member.exists, members.edit);
 router.post('/login', members.login);
 router.post('/logout', members.logout);
 
+
+router.post('/meetups', meetups.create)
+
 module.exports = router;
 
