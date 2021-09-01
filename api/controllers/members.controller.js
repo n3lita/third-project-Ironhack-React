@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const createError = require('http-errors');
 const Member = require('../models/member.model');
+const passport = require('passport')
 
 
 module.exports.create = (req, res, next) => {
@@ -36,7 +37,25 @@ module.exports.edit = (req, res, next) => {
 }
 
 module.exports.delete = (req, res, next) => {
-    Member.deleteOne({_id: req.member.id})
-    .then(() => res.status(204).send())
-    .catch(error => next(error))
+    Member.deleteOne({ _id: req.member.id })
+        .then(() => res.status(204).send())
+        .catch(error => next(error))
+}
+
+module.exports.login = (req, res, next) => {
+    passport.authenticate('local-auth', (error, member, validations) => {
+        if (error) {
+            next(error);
+        } else {
+            req.login(member, error => {
+                if (error) next(error)
+                else res.json(member)
+            })
+        }
+    })(req, res, next)
+};
+
+module.exports.logout = (req, res, next) => {
+    req.logout()
+    res.status(204).end()
 }
