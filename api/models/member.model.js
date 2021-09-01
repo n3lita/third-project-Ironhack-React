@@ -46,6 +46,11 @@ const memberSchema = new Schema({
     isAdmin: {
         type: Boolean,
         default: false
+    }, 
+    description: {
+        type: String, 
+        max: 200, 
+        default: ""
     }
 }, {
     timestamps: true,
