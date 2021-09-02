@@ -1,21 +1,21 @@
 const expressSession = require('express-session');
-const connectMongo = require('connect-mongo');
+const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
 
-const MongoStore = connectMongo(expressSession);
+const sessionMaxAge = Number(process.env.SESSION_MAX_AGE  || 7)
 
 const session = expressSession({
     secret: process.env.SESSION_SECRET || 'super secret (change it)',
     saveUninitialized: false,
     resave: false,
     cookie: {
-        secure: process.env.SESSION_SECURE || false,
+        secure: process.env.SESSION_SECURE === "true",
         httpOnly: true,
-        maxAge: Number(process.env.SESSION_MAX_AGE) || 3600000,
+        maxAge: 24 * 3600 * 1000 * sessionMaxAge
     },
-    store: new MongoStore({
-        mongooseConnection: mongoose.connection,
-        ttl: Number(process.env.SESSION_MAX_AGE) || 3600,
+    store: MongoStore.create({
+        mongoUrl: mongoose.connection._connectionString,
+        ttl: 24 * 3600 * sessionMaxAge
     })
 });
 

@@ -8,7 +8,7 @@ module.exports.create = (req, res, next) => {
     const data = { title, meetupDescription, meetupDate } = req.body
     Meetup.create({
         ...data,
-        author: '612e5f65b71d3502a5abd757' // req.member.id
+        author: req.user.id //logged in member
     })
         .then(meetup => res.status(201).json(meetup))
         .catch(next)
@@ -34,7 +34,7 @@ module.exports.delete = (req, res, next) => {
 
     Meetup.findOneAndDelete({
         _id: req.params.meetupId,
-        author: req.member.id
+        author: req.user.id
     })
         .then(meetup => {
             if (meetup) {
@@ -49,7 +49,7 @@ module.exports.delete = (req, res, next) => {
 module.exports.subscribe = (req, res, next) => {
     const data = {
         meetup: req.params.meetupId,
-        member: '612e5f65b71d3502a5abd757' //req.member.id
+        member: req.user.id
     }
     Subscriber.findOne(data)
         .then(subscribe => {
@@ -69,7 +69,7 @@ module.exports.subscribe = (req, res, next) => {
 module.exports.createComment = (req, res, next) => {
     Comment.create({
         text: req.body.text, 
-        author: '612f8317c2a12e4d88aa9355', //req.member.id, 
+        author: req.user.id,
         meetup: req.params.meetupId
     })
     .then(meetup => res.status(201).json(meetup))

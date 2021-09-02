@@ -6,20 +6,20 @@ const passport = require('passport')
 const secure = require('../middlewares/secure.mid')
 const meetups = require('../controllers/meetups.controller')
 
-router.get('/members', members.list);
-router.get('/members/:memberId', member.exists, members.detail);
-router.patch('/members/:memberId', member.exists, members.edit);
+router.get('/members', secure.isAuthenticated, members.list);
+router.get('/members/:memberId', secure.isAuthenticated, member.exists, members.detail);
+router.patch('/members/:memberId', secure.isAuthenticated, member.exists, members.edit);
 
 router.post('/register', secure.isNotAuthenticated, members.create);
 router.post('/login', secure.isNotAuthenticated, members.login);
-router.post('/logout', members.logout);
+router.post('/logout', secure.isAuthenticated, members.logout);
 
-router.get('/meetups', meetups.list);
-router.post('/meetups/create', meetups.create);
-router.get('/meetups/:meetupId', meetups.detail);
-router.delete('/meetups/:meetupId', meetups.delete);
-router.post('/meetups/:meetupId/subscribe', meetups.subscribe);
-router.post('/meetups/:meetupId/comments', meetups.createComment);
+router.get('/meetups', secure.isAuthenticated, meetups.list);
+router.post('/meetups/create', secure.isAuthenticated, meetups.create);
+router.get('/meetups/:meetupId', secure.isAuthenticated, meetups.detail);
+router.delete('/meetups/:meetupId', secure.isAuthenticated, meetups.delete);
+router.post('/meetups/:meetupId/subscribe', secure.isAuthenticated, meetups.subscribe);
+router.post('/meetups/:meetupId/comments', secure.isAuthenticated, meetups.createComment);
 
 
 module.exports = router;

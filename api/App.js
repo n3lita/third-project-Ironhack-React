@@ -30,7 +30,7 @@ app.use('/api', routes);
 app.use((req, res, next) => next(createError(404, 'Route not found')))
 
 app.use((error, req, res, next) => {
-    console.log(error)
+    console.log('entro en errors')
     if(error instanceof mongoose.Error.ValidationError) {
         error = createError(400, error)
     } else if (error instanceof mongoose.Error.CastError && error.message.includes('_id')) {
@@ -48,12 +48,14 @@ app.use((error, req, res, next) => {
     const data = {}
     data.message = error.message; 
     if (error.errors) {
+        console.log(error.errors)
         data.errors = Object.keys(error.errors)
         .reduce((errors, key) => {
             errors[key] = error.errors[key].message;
             return errors;
         }, {})
     }
+    console.log('data', data)
     res.status(error.status).json(data);
 });
 

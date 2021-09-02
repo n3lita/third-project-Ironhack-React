@@ -8,7 +8,7 @@ module.exports.create = (req, res, next) => {
     Member.findOne({ email: req.body.email })
         .then(member => {
             if (member) {
-                next(createError(400, { errors: { email: 'This user already exists' } }))
+                next(createError(400, { errors: { email: { message: 'This user already exists'} } }))
             } else {
                 return Member.create(req.body)
                     .then(member => res.status(201).json(member))
@@ -28,10 +28,12 @@ module.exports.detail = (req, res, next) => {
 }
 
 module.exports.edit = (req, res, next) => {
-    const data = { name, age, profilePicture, interests, description, password } = req.body;
+    const data = req.body;
+
     if (!password) {
         delete data.password
     }
+
     const member = req.member;
 
     Object.assign(member, data);
