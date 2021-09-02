@@ -9,7 +9,13 @@ module.exports.create = (req, res, next) => {
         ...data, 
         meetupAuthor: req.member.id
     })
-
 .then(meetup => res.status(201).json(meetup))
 .catch(next)
+}; 
+
+module.exports.list = (req, res, next) => {
+    Meetup.find()
+    .then(meetups => res.json(meetups))
+    .catch(next)
 }
+

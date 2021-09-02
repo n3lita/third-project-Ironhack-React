@@ -30,13 +30,19 @@ module.exports.detail = (req, res, next) => {
 module.exports.edit = (req, res, next) => {
     const data = { name, age, profilePicture, interests, description } = req.body;
     const member = req.member;
-        if (req.body.memberId === member.id || req.body.isAdmin) {
+    Object.assign(member, data);
+            member.save()
+                .then(member => res.json(member))
+                .catch(next)
+
+       /*  if (req.body.memberId === member.id || req.body.isAdmin) {
             Object.assign(member, data);
             member.save()
                 .then(member => res.json(member))
+                .catch(next)
         } else {
             return res.status(403, "You can only update your account!")
-        }
+        } */
 }
 
 module.exports.delete = (req, res, next) => {
@@ -44,6 +50,9 @@ module.exports.delete = (req, res, next) => {
         .then(() => res.status(204).send())
         .catch(error => next(error))
 }
+
+
+//AUTH
 
 module.exports.login = (req, res, next) => {
     passport.authenticate('local-auth', (error, member, validations) => {

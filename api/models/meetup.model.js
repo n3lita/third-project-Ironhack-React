@@ -7,15 +7,16 @@ const meetupSchema = new Schema(
             type: String,
             required: "Please add a title",
         },
-        meetupDescription: {
+        text: {
             type: String,
-            required: "Please add a description"
+            required: "Please add a description", 
+            maxlength: 300
         },
-        meetupDate: {
+        date: {
             type: Date,
             required: "Select a date"
         },
-        meetupAuthor: {
+        author: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Member',
             required: true

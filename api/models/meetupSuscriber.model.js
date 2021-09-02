@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
-const suscriberSchema = new Schema({
+const meetupSuscriberSchema = new Schema({
     member: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Member',
@@ -25,5 +25,5 @@ const suscriberSchema = new Schema({
     }
 })
 
-const Suscriber = mongoose.model('Suscriber', suscriberSchema);
+const Suscriber = mongoose.model('Suscriber', meetupSuscriberSchema);
 module.exports = Suscriber;
