@@ -14,7 +14,13 @@ const meetupSchema = new Schema(
         },
         date: {
             type: Date,
-            required: "Select a date"
+            required: "Select a date", 
+            default: Date.now()
+        },
+        time: {
+            type: Date, 
+            required: "select a time", 
+            default: Date.now()
         },
         author: {
             type: mongoose.Schema.Types.ObjectId,
@@ -34,12 +40,19 @@ const meetupSchema = new Schema(
     }
 })
 
-schema.virtual('suscribers', {
-    ref: 'Suscriber', 
+meetupSchema.virtual('subscribers', {
+    ref: 'Subscriber', 
     localField: '_id',
     foreignField: 'meetup',
     count: true
 });
+
+meetupSchema.virtual('comments', {
+    ref: 'Comment', 
+    localField: '_id',
+    foreignField: 'meetup', 
+    justOne: false,
+})
 
 const Meetup = mongoose.model('Meetup', meetupSchema);
 module.exports = Meetup;

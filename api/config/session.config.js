@@ -1,4 +1,3 @@
-require('dotenv').config();
 const expressSession = require('express-session');
 const connectMongo = require('connect-mongo');
 const mongoose = require('mongoose');
@@ -12,11 +11,11 @@ const session = expressSession({
     cookie: {
         secure: process.env.SESSION_SECURE || false,
         httpOnly: true,
-        maxAge: 7 || 3600000,
+        maxAge: Number(process.env.SESSION_MAX_AGE) || 3600000,
     },
     store: new MongoStore({
         mongooseConnection: mongoose.connection,
-        ttl: 7 || 3600,
+        ttl: Number(process.env.SESSION_MAX_AGE) || 3600,
     })
 });
 

@@ -3,14 +3,18 @@ const Schema = mongoose.Schema
 
 
 const MeetupCommentSchema = new Schema({
-    text: String, 
+    text: {
+        type: String,
+        required: true, 
+        minlength: 2
+    },
     author: {
-type: mongoose.Schema.Types.ObjectId, 
-ref: 'Member', 
-required: true
-    }, 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Member',
+        required: true
+    },
     meetup: {
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Meetup',
         required: true
     }
@@ -28,5 +32,5 @@ required: true
     }
 })
 
-const Comment = mongoose.model("Conversation", MeetupCommentSchema)
+const Comment = mongoose.model("Comment", MeetupCommentSchema)
 module.exports = Comment;

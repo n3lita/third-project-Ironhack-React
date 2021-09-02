@@ -28,21 +28,16 @@ module.exports.detail = (req, res, next) => {
 }
 
 module.exports.edit = (req, res, next) => {
-    const data = { name, age, profilePicture, interests, description } = req.body;
+    const data = { name, age, profilePicture, interests, description, password } = req.body;
+    if (!password) {
+        delete data.password
+    }
     const member = req.member;
+
     Object.assign(member, data);
             member.save()
                 .then(member => res.json(member))
                 .catch(next)
-
-       /*  if (req.body.memberId === member.id || req.body.isAdmin) {
-            Object.assign(member, data);
-            member.save()
-                .then(member => res.json(member))
-                .catch(next)
-        } else {
-            return res.status(403, "You can only update your account!")
-        } */
 }
 
 module.exports.delete = (req, res, next) => {
