@@ -16,7 +16,8 @@ const MessageSchema = new Schema({
     }, 
     text: {
         type: String, 
-        required: true
+        required: true, 
+        minlength: 1
     }
 }, {
     timestamps: true,
@@ -26,12 +27,11 @@ const MessageSchema = new Schema({
             delete ret._id;
             delete ret.__v;
             delete ret.password;
-
             return ret
         }
     }
 })
 
 
-const Conversation = mongoose.model("Conversation", ConversationSchema)
-module.exports = Conversation;
+const Message = mongoose.model("Message", MessageSchema)
+module.exports = Message;

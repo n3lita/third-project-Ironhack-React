@@ -31,7 +31,6 @@ module.exports.detail = (req, res, next) => {
 
 module.exports.delete = (req, res, next) => {
     const data = { title, text, date, time } = req.body
-
     Meetup.findOneAndDelete({
         _id: req.params.meetupId,
         author: req.user.id
@@ -64,6 +63,10 @@ module.exports.subscribe = (req, res, next) => {
             }
         })
         .catch(next)
+}
+
+module.exports.update = (req, res, next) => {
+
 }
 
 module.exports.createComment = (req, res, next) => {

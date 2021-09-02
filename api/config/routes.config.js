@@ -25,6 +25,9 @@ router.post('/meetups/:meetupId/comments', secure.isAuthenticated, meetups.creat
 
 router.post('/conversation/:receiverId', conversations.create)
 router.get('/conversations', conversations.list)
+router.delete('/conversations/:conversationId', conversations.delete)
+router.post('/conversations/:conversationId', conversations.createMessage)
+router.get('/conversations/:conversationId', conversations.detail)
 
 module.exports = router;
 
