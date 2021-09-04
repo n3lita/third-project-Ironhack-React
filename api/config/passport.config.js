@@ -2,6 +2,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const Member = require('../models/member.model');
 const LocalStrategy = require('passport-local').Strategy
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 passport.serializeUser((member, next) => {
     next(null, member.id)
@@ -32,4 +33,41 @@ passport.use('local-auth', new LocalStrategy({
                     })
             }
         }).catch(next)
+}));
+
+passport.use('google-auth', new GoogleStrategy({
+    clientID: process.env.G_CLIENT_ID,
+    clientSecret: process.env.G_CLIENT_SECRET,
+  callbackURL: '/api/authenticate/google/cb',
+},(accessToken, refreshToken, profile, next) => {
+    const googleId = profile.id;
+    const name = profile.displayName; 
+    const email = profile.emails[0] ? profile.emails[0].value : undefined;
+
+    if (googleId && name && email) {
+        Member.findOne({ $or: [
+            { email }, 
+            { 'social.google' : googleId}
+        ]})
+        .then(member => {
+            if(!member) {
+                member = new Member({
+                    name,
+                    email, 
+                    profilePicture: profile.photos[0].value,
+                    password: mongoose.Types.ObjectId(),
+                    social: {
+                        google: googleId
+                    } 
+                }); 
+                return member.save()
+                .then(member => next(null, member))
+            } else {
+                next(null, member)
+            }
+        })
+        .catch(next)
+    } else {
+        next(null, null, { oauth: 'invalid google oauth response'})
+    }
 }));

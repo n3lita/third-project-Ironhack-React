@@ -21,6 +21,7 @@
   "homepage": "https://github.com/n3lita/third-project-Ironhack-React#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cloudinary": "^1.26.3",
     "connect-mongo": "^4.5.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -30,7 +31,10 @@
     "http-errors": "^1.7.2",
     "mongoose": "^6.0.2",
     "morgan": "^1.10.0",
+    "multer": "^1.4.3",
+    "multer-storage-cloudinary": "^4.0.0",
     "passport": "^0.4.1",
+    "passport-google-oauth": "^2.0.0",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {

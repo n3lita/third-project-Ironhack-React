@@ -15,6 +15,9 @@ router.post('/register', secure.isNotAuthenticated, members.register);
 router.post('/login', secure.isNotAuthenticated, members.login);
 router.post('/logout', secure.isAuthenticated, members.logout);
 
+router.get('/authenticate/google', members.doLoginWithGoogle)
+router.get('/authenticate/google/cb', members.doLoginWithGoogle)
+
 router.get('/meetups', secure.isAuthenticated, meetups.list);
 router.post('/meetups/create', secure.isAuthenticated, meetups.create);
 router.get('/meetups/:meetupId', secure.isAuthenticated, meetups.detail);
