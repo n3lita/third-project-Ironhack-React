@@ -74,16 +74,16 @@ module.exports.logout = (req, res, next) => {
 
 module.exports.loginWithGoogle = (req, res, next) => {
     const passportController = passport.authenticate('google-auth', {
-      scope: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],  
+      scope: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
     });
     passportController(req, res, next);
-};
+  };
 
-module.exports.doLoginWithGoogle = (req, res, next) => {
+  module.exports.doLoginWithGoogle = (req, res, next) => {
     const passportController = passport.authenticate('google-auth', (error, user, validations) => {
-        if (error) {
-            next(error);
-        } else {
+      if (error) {
+        next(error);
+      } else {
             req.login(user, error => {
                 if (error) {
                     next(error)
