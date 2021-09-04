@@ -1,26 +1,14 @@
 const mongoose = require("mongoose")
-const createError = require('http-errors');
-const Member = require('../models/member.model');
+const createError = require('http-errors')
+const Member = require('../models/member.model')
 const passport = require('passport')
 
 
-module.exports.create = (req, res, next) => {
-    Member.findOne({ email: req.body.email })
-        .then(member => {
-            if (member) {
-                next(createError(400, { errors: { email: { message: 'This user already exists'} } }))
-            } else {
-                return Member.create(req.body)
-                    .then(member => res.status(201).json(member))
-            }
-        })
-        .catch(next)
-}
 
 module.exports.list = (req, res, next) => {
     Member.find()
         .then(members => res.json(members))
-        .catch(error => next(error))
+        .catch(next)
 }
 
 module.exports.detail = (req, res, next) => {
@@ -45,11 +33,24 @@ module.exports.edit = (req, res, next) => {
 module.exports.delete = (req, res, next) => {
     Member.deleteOne({ _id: req.member.id })
         .then(() => res.status(204).send())
-        .catch(error => next(error))
+        .catch(next)
 }
 
 
 //AUTH
+
+module.exports.register = (req, res, next) => {
+    Member.findOne({ email: req.body.email })
+        .then(member => {
+            if (member) {
+                next(createError(400, { errors: { email: { message: 'This user already exists'} } }))
+            } else {
+                return Member.create(req.body)
+                    .then(member => res.status(201).json(member))
+            }
+        })
+        .catch(next)
+}
 
 module.exports.login = (req, res, next) => {
     passport.authenticate('local-auth', (error, member, validations) => {

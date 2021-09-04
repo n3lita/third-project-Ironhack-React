@@ -15,7 +15,7 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.list = (req, res, next) => {
-        Meetup.find()
+    Meetup.find()
         .populate('author')
         .populate('comments')
         .populate('subscribers')
@@ -45,6 +45,17 @@ module.exports.delete = (req, res, next) => {
         .catch(next)
 }
 
+module.exports.edit = (req, res, next) => {
+    const data = { title, text, date, time } = req.body
+
+    Meetup.findByIdAndUpdate(req.params.meetupId, data, { new: true })
+        .then(meetup => {
+            console.log('meetup', meetup)
+            res.status(202).json(meetup)
+        })
+        .catch(next)
+}
+
 module.exports.subscribe = (req, res, next) => {
     const data = {
         meetup: req.params.meetupId,
@@ -65,16 +76,13 @@ module.exports.subscribe = (req, res, next) => {
         .catch(next)
 }
 
-module.exports.update = (req, res, next) => {
-
-}
 
 module.exports.createComment = (req, res, next) => {
     Comment.create({
-        text: req.body.text, 
+        text: req.body.text,
         author: req.user.id,
         meetup: req.params.meetupId
     })
-    .then(meetup => res.status(201).json(meetup))
-    .catch(next)
+        .then(meetup => res.status(201).json(meetup))
+        .catch(next)
 }

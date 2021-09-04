@@ -17,11 +17,6 @@ const meetupSchema = new Schema(
             required: "Select a date", 
             default: Date.now()
         },
-        time: {
-            type: Date, 
-            required: "select a time", 
-            default: Date.now()
-        },
         author: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Member',

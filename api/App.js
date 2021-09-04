@@ -30,7 +30,6 @@ app.use('/api', routes);
 app.use((req, res, next) => next(createError(404, 'Route not found')))
 
 app.use((error, req, res, next) => {
-    console.log('entro en errors')
     if(error instanceof mongoose.Error.ValidationError) {
         error = createError(400, error)
     } else if (error instanceof mongoose.Error.CastError && error.message.includes('_id')) {
