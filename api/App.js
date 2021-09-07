@@ -20,6 +20,8 @@ app.use(cors);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
+app.use(express.static(`${__dirname}/public`));
+
 
 /** Routes */
 const routes = require('./config/routes.config');

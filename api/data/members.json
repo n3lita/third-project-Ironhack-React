@@ -1,0 +1,82 @@
+[
+    {
+    "name": "Nela",
+    "age": "31",
+    "interests": ["dance", "party", "happy hour", "travel"],
+    "isAdmin": true,
+    "email": "girlzfriends@girlzfriends.com",
+    "password": "12345678"
+},
+{
+    "name": "Joanna D",
+    "age": "34",
+    "interests": ["yoga", "mary jane", "happy hour"]
+},
+{
+    "name": "Lady D",
+    "age": "28",
+    "interests": ["fashion", "dance", "party", "food"]
+},
+{
+    "name": "Lisa H",
+    "age": "30",
+    "interests": ["art", "volunteering", "fitness", "food"]
+},
+{
+    "name": "Lady D",
+    "age": "28",
+    "interests": ["fitness", "rooftops", "party"]
+},
+{
+    "name": "Lady D",
+    "age": "28",
+    "interests": ["travel", "fitness", "rooftops", "food"]
+},
+{
+    "name": "Cristina",
+    "age": "32",
+    "interests": ["travel", "married", "with kids"]
+},
+{
+    "name": "Maria",
+    "age": "33",
+    "interests": ["yoga", "with kids", "rooftops"]
+},
+{
+    "name": "Gariela",
+    "age": "33",
+    "interests": ["travel", "mary jane", "volunteering"]
+},
+{
+    "name": "Thais",
+    "interests": ["with kids", "happy hour", "art"]
+},
+{
+    "name": "Susana",
+    "interests": ["travel", "fitness", "fashion"]
+},
+{
+    "name": "Nuria A",
+    "interests": ["travel", "fitness", "rooftops"]
+},
+{
+    "name": "Noemi",
+    "interests": ["volunteering", "art"]
+},
+{
+    "name": "Soraya B",
+    "interests": ["married", "with kids", "fitness", "travel", "fashion", "happy hour"]
+},{
+    "name": "Laura",
+    "interests": ["mary jane", "food", "singles"]
+},{
+    "name": "Laura",
+    "interests": ["mary jane", "singles", "happy hour"]
+},{
+    "name": "Laura",
+    "interests": ["art", "fitness", "volunteering"]
+},{
+    "name": "Laura",
+    "interests": ["travel", "fitness", "singles"]
+}
+]

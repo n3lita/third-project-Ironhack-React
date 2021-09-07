@@ -16,18 +16,16 @@ module.exports.detail = (req, res, next) => {
 };
 
 module.exports.edit = (req, res, next) => {
-    const data = req.body;
-
-    if (!password) {
-        delete data.password
-    }
-
+    const data = { name, age, description, interests} = req.body;
     const member = req.member;
 
-    Object.assign(member, data);
-            member.save()
-                .then(member => res.json(member))
-                .catch(next);
+    if (req.file) {
+        data.profilePicture = req.file.path
+    }
+
+    Member.findByIdAndUpdate(member.id, data, {new: true})
+        .then(member => res.status(202).json(member))
+        .catch(error => next(error))
 };
 
 module.exports.delete = (req, res, next) => {
@@ -43,9 +41,12 @@ module.exports.register = (req, res, next) => {
     Member.findOne({ email: req.body.email })
         .then(member => {
             if (member) {
-                next(createError(400, { errors: { email: { message: 'This user already exists'} } }))
+                next(createError(400, { errors: { email: { message: 'This user already exists' } } }))
             } else {
-                return Member.create(req.body)
+                return Member.create({
+                    ...req.body, 
+                profilePicture: req?.file?.path
+            })
                     .then(member => res.status(201).json(member))
             }
         })
@@ -74,16 +75,16 @@ module.exports.logout = (req, res, next) => {
 
 module.exports.loginWithGoogle = (req, res, next) => {
     const passportController = passport.authenticate('google-auth', {
-      scope: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
+        scope: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
     });
     passportController(req, res, next);
-  };
+};
 
-  module.exports.doLoginWithGoogle = (req, res, next) => {
+module.exports.doLoginWithGoogle = (req, res, next) => {
     const passportController = passport.authenticate('google-auth', (error, user, validations) => {
-      if (error) {
-        next(error);
-      } else {
+        if (error) {
+            next(error);
+        } else {
             req.login(user, error => {
                 if (error) {
                     next(error)
@@ -93,5 +94,5 @@ module.exports.loginWithGoogle = (req, res, next) => {
             })
         }
     })
-    passportController(req, res, next); 
+    passportController(req, res, next);
 }

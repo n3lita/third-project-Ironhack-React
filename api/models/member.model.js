@@ -15,8 +15,7 @@ const memberSchema = new Schema({
         unique: true
     },
     age: {
-        type: String,
-        required: 'Age is required'
+        type: Number,
     },
     password: {
         type: String,
@@ -25,31 +24,42 @@ const memberSchema = new Schema({
     },
     profilePicture: {
         type: String,
-        default: ""
+        default: "/img/defProfilePicture.png"
     },
-    interests: {
-        type: [{
-            type: String,
-            enum: interests
-        }],
-        validate: {
-            validator: function (interests) {
-                return interests.length >= 1;
-            },
-            message: 'Choose at least one interest'
-        }
+    /*    interests: {
+           type: [{
+               type: String,
+               enum: interests
+           }],
+           validate: {
+               validator: function (interests) {
+                   return interests.length >= 1;
+               },
+               message: 'Choose at least one interest'
+           } */
+    interests:
+    {
+        type: [String],
+        enum: interests
     },
-    city: {
-        type: String,
-        required: "The City is required"
-    },
+    location: {
+        type: { 
+            type: String, 
+            default: "Point" 
+        },
+        coordinates: [Number]
+  },
     isAdmin: {
         type: Boolean,
         default: false
-    }, 
+    },
     description: {
-        type: String, 
-        max: 200, 
+        type: String,
+        max: 200,
+        default: ""
+    },
+    otherPictures: {
+        type: String,
         default: ""
     }
 }, {
@@ -74,6 +84,9 @@ const memberSchema = new Schema({
         }
     }
 })
+
+
+memberSchema.index({location: '2dsphere'})
 
 memberSchema.pre('save', function (next) {
     if (this.isModified('password')) {

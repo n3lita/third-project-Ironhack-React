@@ -6,16 +6,17 @@ const passport = require('passport')
 const secure = require('../middlewares/secure.mid')
 const meetups = require('../controllers/meetups.controller')
 const conversations = require('../controllers/conversations.controller')
+const upload = require('../config/multer.config')
 
 router.get('/members', secure.isAuthenticated, members.list);
 router.get('/members/:memberId', secure.isAuthenticated, member.exists, members.detail);
-router.patch('/members/:memberId', secure.isAuthenticated, member.exists, members.edit);
+router.patch('/members/:memberId', secure.isAuthenticated, member.exists, upload.single('profilePicture'),  members.edit);
 
-router.post('/register', secure.isNotAuthenticated, members.register);
+router.post('/register', secure.isNotAuthenticated, upload.single('profilePicture'), members.register);
 router.post('/login', secure.isNotAuthenticated, members.login);
 router.post('/logout', secure.isAuthenticated, members.logout);
 
-router.get('/authenticate/google', members.doLoginWithGoogle)
+router.get('/authenticate/google', members.loginWithGoogle)
 router.get('/authenticate/google/cb', members.doLoginWithGoogle)
 
 router.get('/meetups', secure.isAuthenticated, meetups.list);

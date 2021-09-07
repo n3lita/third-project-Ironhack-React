@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap');
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    border-bottom: 1px solid #FFDFAF;
+    background-color: #E4D7FF;
+}
+
+.header_logo {
+    object-fit: contain;
+    height: 30px;
+    color: #4C269A;
+    font-family: 'Pacifico', cursive;
+    font-size: 20px;
+}

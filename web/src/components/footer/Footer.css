@@ -1,0 +1,16 @@
+.footer {
+    position: fixed; 
+    bottom: 0;
+    display: flex; 
+    width: 100%; 
+    justify-content: space-evenly;
+    background-color: #E4D7FF;
+    padding: 5px;
+    border-top: 1px solid #FFDFAF;
+
+
+}
+
+.footer .MuiIconButton-root {
+    color: #4C269A
+}
