@@ -19,6 +19,10 @@ mongoose.connection.once("open", () => {
                password: member.password? member.password: faker.internet.password(),
                interests: member.interests,
                age: member.age? member.age: faker.datatype.number(40),
+               location: {
+                  type: "Point",
+                  coordinates: [0,0]
+               }
             };
             return new Member(newMember).save()
          })
