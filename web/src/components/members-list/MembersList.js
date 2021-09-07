@@ -1,4 +1,5 @@
 import React from "react"
+import MemberItem from "../member-item/MemberItem"
 import "./MembersList.css"
 
 
@@ -8,12 +9,17 @@ function MembersList(){
             <div className="membercards">
                 <section className="cards_container">
                     <article className="card">
-                    <p> card one</p>
+                    <MemberItem/>
                     </article>
 
                     <article className="card">
                     <p> card 2</p>
                     </article>
+
+                    <article className="card">
+                    <p> card 3</p>
+                    </article>
+
 
                 </section>
             </div>
