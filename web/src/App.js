@@ -1,10 +1,11 @@
 import React from "react"
 import Header from "./components/header/Header";
 import { BrowserRouter, Route, Switch} from "react-router-dom"
-import ConversationsList from "./components/conversations-list/ConversationsList";
-import MembersList from "./components/members-list/MembersList";
+import ConversationsList from "./components/conversations/conversations-list/ConversationsList";
+import MembersList from "./components/member/members-list/MembersList";
 import Footer from "./components/footer/Footer";
-import ConversationScreen from "./components/conversation-screen/ConversationScreen";
+import ConversationScreen from "./components/conversations/conversation-screen/ConversationScreen";
+import MemberDetail from "./components/member/member-detail/MemberDetail";
 
 
 
@@ -28,8 +29,10 @@ function App() {
         <Route exact path="/conversation/:receiverId">
           <Header backButton="/conversations" />
           <ConversationScreen/>
-
         </Route>
+
+        <Route exact path="/members/:id" component={MemberDetail} />
+
       </Switch>
       </BrowserRouter>
     </div>
