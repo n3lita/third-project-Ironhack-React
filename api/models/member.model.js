@@ -1,17 +1,17 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema
 const PASSWORD_PATTERN = /^.{8,}$/;
-const interests = require('../data/interests.json')
-const bcrypt = require('bcrypt')
+const interests = require("../data/interests.json")
+const bcrypt = require("bcrypt")
 
 const memberSchema = new Schema({
     name: {
         type: String,
-        required: 'Name is required'
+        required: "Name is required"
     },
     email: {
         type: String,
-        required: 'Email is required',
+        required: "Email is required",
         unique: true
     },
     age: {
@@ -19,8 +19,8 @@ const memberSchema = new Schema({
     },
     password: {
         type: String,
-        required: 'Password is required',
-        match: [PASSWORD_PATTERN, 'password needs at least 8 characters']
+        required: "Password is required",
+        match: [PASSWORD_PATTERN, "password needs at least 8 characters"]
     },
     profilePicture: {
         type: String,
@@ -35,7 +35,7 @@ const memberSchema = new Schema({
                validator: function (interests) {
                    return interests.length >= 1;
                },
-               message: 'Choose at least one interest'
+               message: "Choose at least one interest"
            } */
     interests:
     {
@@ -86,10 +86,10 @@ const memberSchema = new Schema({
 })
 
 
-memberSchema.index({location: '2dsphere'})
+memberSchema.index({location: "2dsphere"})
 
-memberSchema.pre('save', function (next) {
-    if (this.isModified('password')) {
+memberSchema.pre("save", function (next) {
+    if (this.isModified("password")) {
         bcrypt.hash(this.password, 10).then((hash) => {
             this.password = hash;
             next();

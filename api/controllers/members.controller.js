@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
-const createError = require('http-errors')
-const Member = require('../models/member.model')
-const passport = require('passport')
+const createError = require("http-errors")
+const Member = require("../models/member.model")
+const passport = require("passport")
 
 
 
@@ -41,7 +41,7 @@ module.exports.register = (req, res, next) => {
     Member.findOne({ email: req.body.email })
         .then(member => {
             if (member) {
-                next(createError(400, { errors: { email: { message: 'This user already exists' } } }))
+                next(createError(400, { errors: { email: { message: "This user already exists" } } }))
             } else {
                 return Member.create({
                     ...req.body, 
@@ -54,7 +54,7 @@ module.exports.register = (req, res, next) => {
 };
 
 module.exports.login = (req, res, next) => {
-    passport.authenticate('local-auth', (error, member, validations) => {
+    passport.authenticate("local-auth", (error, member, validations) => {
         if (error) {
             next(error);
         } else if (!member) {
@@ -74,14 +74,14 @@ module.exports.logout = (req, res, next) => {
 };
 
 module.exports.loginWithGoogle = (req, res, next) => {
-    const passportController = passport.authenticate('google-auth', {
-        scope: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
+    const passportController = passport.authenticate("google-auth", {
+        scope: ["https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"],
     });
     passportController(req, res, next);
 };
 
 module.exports.doLoginWithGoogle = (req, res, next) => {
-    const passportController = passport.authenticate('google-auth', (error, user, validations) => {
+    const passportController = passport.authenticate("google-auth", (error, user, validations) => {
         if (error) {
             next(error);
         } else {
@@ -89,7 +89,7 @@ module.exports.doLoginWithGoogle = (req, res, next) => {
                 if (error) {
                     next(error)
                 } else {
-                    res.redirect(process.env.WEB_URL || 'http://localhost:3000') //web de REACT
+                    res.redirect(process.env.WEB_URL || "http://localhost:3000") //web de REACT
                 }
             })
         }

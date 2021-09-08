@@ -1,17 +1,17 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema
-require('../models/conversation.model')
-require('../models/member.model')
+require("../models/conversation.model")
+require("../models/member.model")
 
 const MessageSchema = new Schema({
     conversationId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Conversation',
+        ref: "Conversation",
         required: true
     }, 
     sender: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Member',
+        ref: "Member",
         required: true
     }, 
     text: {

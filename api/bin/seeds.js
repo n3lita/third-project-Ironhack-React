@@ -1,11 +1,11 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const faker = require('faker');
+const faker = require("faker");
 const mongoose = require("mongoose");
 const members = require("../data/members.json");
 const Member = require("../models/member.model")
 
-require('../config/db.config')
+require("../config/db.config")
 
 mongoose.connection.once("open", () => {
    mongoose.connection.dropDatabase()
@@ -28,8 +28,8 @@ mongoose.connection.once("open", () => {
          })
       );
    })
-   .then(console.info('Sucessfully created the members'))
-   .catch(error => console.error('An error ocurred running seeds', error))
+   .then(console.info("Sucessfully created the members"))
+   .catch(error => console.error("An error ocurred running seeds", error))
    .then(() => mongoose.disconnect())
 })
 

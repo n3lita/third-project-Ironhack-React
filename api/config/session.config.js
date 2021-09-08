@@ -1,11 +1,11 @@
-const expressSession = require('express-session');
-const MongoStore = require('connect-mongo');
-const mongoose = require('mongoose');
+const expressSession = require("express-session");
+const MongoStore = require("connect-mongo");
+const mongoose = require("mongoose");
 
 const sessionMaxAge = Number(process.env.SESSION_MAX_AGE  || 7)
 
 const session = expressSession({
-    secret: process.env.SESSION_SECRET || 'super secret (change it)',
+    secret: process.env.SESSION_SECRET || "super secret (change it)",
     saveUninitialized: false,
     resave: false,
     cookie: {

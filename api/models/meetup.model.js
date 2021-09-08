@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema
 
 const meetupSchema = new Schema(
@@ -19,7 +19,7 @@ const meetupSchema = new Schema(
         },
         author: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Member',
+            ref: "Member",
             required: true
         }
     }, {
@@ -35,19 +35,19 @@ const meetupSchema = new Schema(
     }
 })
 
-meetupSchema.virtual('subscribers', {
-    ref: 'Subscriber', 
-    localField: '_id',
-    foreignField: 'meetup',
+meetupSchema.virtual("subscribers", {
+    ref: "Subscriber", 
+    localField: "_id",
+    foreignField: "meetup",
     count: true
 });
 
-meetupSchema.virtual('comments', {
-    ref: 'Comment', 
-    localField: '_id',
-    foreignField: 'meetup', 
+meetupSchema.virtual("comments", {
+    ref: "Comment", 
+    localField: "_id",
+    foreignField: "meetup", 
     justOne: false,
 })
 
-const Meetup = mongoose.model('Meetup', meetupSchema);
+const Meetup = mongoose.model("Meetup", meetupSchema);
 module.exports = Meetup;

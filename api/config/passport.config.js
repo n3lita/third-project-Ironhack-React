@@ -1,8 +1,8 @@
-const passport = require('passport');
-const mongoose = require('mongoose');
-const Member = require('../models/member.model');
-const LocalStrategy = require('passport-local').Strategy
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const passport = require("passport");
+const mongoose = require("mongoose");
+const Member = require("../models/member.model");
+const LocalStrategy = require("passport-local").Strategy
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
 passport.serializeUser((member, next) => {
     next(null, member.id)
@@ -14,31 +14,31 @@ passport.deserializeUser((id, next) => {
         .catch(next)
 });
 
-passport.use('local-auth', new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password'
+passport.use("local-auth", new LocalStrategy({
+    usernameField: "email",
+    passwordField: "password"
 }, (email, password, next) => {
     Member.findOne({ email })
         .then(member => {
             if (!member) {
-                next(null, null, { email: 'Invalid email or password' })
+                next(null, null, { email: "Invalid email or password" })
             } else {
                 return member.checkPassword(password)
                     .then(match => {
                         if (match) {
                             next(null, member)
                         } else {
-                            next(null, null, { email: 'Invalid email or password' })
+                            next(null, null, { email: "Invalid email or password" })
                         }
                     })
             }
         }).catch(next)
 }));
 
-passport.use('google-auth', new GoogleStrategy({
+passport.use("google-auth", new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: '/api/authenticate/google/cb',
+    callbackURL: "/api/authenticate/google/cb",
 }, (accessToken, refreshToken, profile, next) => {
     const googleId = profile.id;
     const name = profile.displayName;
@@ -48,7 +48,7 @@ passport.use('google-auth', new GoogleStrategy({
         Member.findOne({
             $or: [
                 { email },
-                { 'social.google': googleId }
+                { "social.google": googleId }
             ]
         })
             .then(member => {
@@ -70,6 +70,6 @@ passport.use('google-auth', new GoogleStrategy({
             })
             .catch(next)
     } else {
-        next(null, null, { oauth: 'invalid google oauth response' })
+        next(null, null, { oauth: "invalid google oauth response" })
     }
 }));

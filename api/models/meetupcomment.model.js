@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema
 
 
@@ -10,12 +10,12 @@ const MeetupCommentSchema = new Schema({
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Member',
+        ref: "Member",
         required: true
     },
     meetup: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Meetup',
+        ref: "Meetup",
         required: true
     }
 }, {

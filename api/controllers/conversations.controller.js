@@ -1,8 +1,8 @@
-const mongoose = require('mongoose')
-const createError = require('http-errors')
-const Member = require('../models/member.model')
-const Conversation = require('../models/conversation.model')
-const Message = require('../models/message.model')
+const mongoose = require("mongoose")
+const createError = require("http-errors")
+const Member = require("../models/member.model")
+const Conversation = require("../models/conversation.model")
+const Message = require("../models/message.model")
 
 module.exports.create = (req, res, next) => {
 Conversation.create({ 
@@ -14,7 +14,7 @@ Conversation.create({
 
 module.exports.list = (req, res, next) => {
     Conversation.find({$in: [req.user.id]})
-    .populate('messages')
+    .populate("messages")
     .then(conversation => res.status(200).json(conversation))
     .catch(next)
 }
@@ -27,7 +27,7 @@ module.exports.delete = (req, res, next) => {
 
 module.exports.detail = (req, res, next) => {
     Conversation.findById(req.params.conversationId)
-    .populate('messages')
+    .populate("messages")
     .then(conversation => res.status(200).json(conversation))
     .catch(next)
 }

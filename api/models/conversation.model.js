@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema
 
 
@@ -19,10 +19,10 @@ const ConversationSchema = new Schema({
         }
     }
 })
-ConversationSchema.virtual('messages', {
-    ref:'Message', 
-    localField: '_id', 
-    foreignField: 'conversationId',
+ConversationSchema.virtual("messages", {
+    ref:"Message", 
+    localField: "_id", 
+    foreignField: "conversationId",
     justOne: false,
 })
 

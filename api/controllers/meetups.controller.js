@@ -1,8 +1,8 @@
-const mongoose = require('mongoose')
-const createError = require('http-errors')
-const Meetup = require('../models/meetup.model');
-const Subscriber = require('../models/meetupSubscriber.model');
-const Comment = require('../models/meetupcomment.model')
+const mongoose = require("mongoose")
+const createError = require("http-errors")
+const Meetup = require("../models/meetup.model");
+const Subscriber = require("../models/meetupSubscriber.model");
+const Comment = require("../models/meetupcomment.model")
 
 module.exports.create = (req, res, next) => {
     const data = { title, meetupDescription, meetupDate } = req.body
@@ -16,9 +16,9 @@ module.exports.create = (req, res, next) => {
 
 module.exports.list = (req, res, next) => {
     Meetup.find()
-        .populate('author')
-        .populate('comments')
-        .populate('subscribers')
+        .populate("author")
+        .populate("comments")
+        .populate("subscribers")
         .then(meetups => res.json(meetups))
         .catch(next)
 }
@@ -39,7 +39,7 @@ module.exports.delete = (req, res, next) => {
             if (meetup) {
                 res.status(204).end()
             } else {
-                next(createError(404, 'meetup not found'))
+                next(createError(404, "meetup not found"))
             }
         })
         .catch(next)
@@ -50,7 +50,7 @@ module.exports.edit = (req, res, next) => {
 
     Meetup.findByIdAndUpdate(req.params.meetupId, data, { new: true })
         .then(meetup => {
-            console.log('meetup', meetup)
+            console.log("meetup", meetup)
             res.status(202).json(meetup)
         })
         .catch(next)

@@ -1,5 +1,5 @@
-const createError = require('http-errors');
-const Member = require('../models/member.model');
+const createError = require("http-errors");
+const Member = require("../models/member.model");
 
 module.exports.exists = (req, res, next) => {
     const id = req.params.memberId || req.params.id
@@ -9,7 +9,7 @@ module.exports.exists = (req, res, next) => {
                 req.member = member;
                 next();
             } else {
-                next(createError(404, 'Member not found'))
+                next(createError(404, "Member not found"))
             }
         })
         .catch(next)
