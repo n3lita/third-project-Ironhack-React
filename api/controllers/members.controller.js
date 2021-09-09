@@ -6,9 +6,17 @@ const passport = require("passport")
 
 
 module.exports.list = (req, res, next) => {
-    Member.find()
-        .then(members => res.json(members))
-        .catch(next);
+    const criterial = {};
+
+    const { interests } = req.query;
+    console.log(req.query);
+    if (interests) {
+        criterial.interests = { $in: interests };
+    }
+
+    Member.find(criterial)
+            .then(members => res.json(members))
+            .catch(next);
 };
 
 module.exports.detail = (req, res, next) => {
