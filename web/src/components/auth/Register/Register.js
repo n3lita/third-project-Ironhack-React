@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useHistory } from "react-router"
-import service from "../../services/member-service"
+import service from "../../../services/member-service"
 
 
 function Register() {
@@ -8,7 +8,7 @@ function Register() {
     const [error, setError] = useState()
 
     function handleSubmit(event) {
-        service.createMember({
+        service.register({
             name: event.target.name.value,
             email: event.target.email.value,
             password: event.target.password.value,
@@ -56,7 +56,6 @@ function Register() {
                         {error?.profilePicture}
                     </small>
                 </div>
-
                 <button type="submit">Create</button>
             </form>
         </div>

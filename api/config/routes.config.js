@@ -8,9 +8,9 @@ const meetups = require('../controllers/meetups.controller')
 const conversations = require('../controllers/conversations.controller')
 const upload = require('../config/multer.config')
 
-router.get('/members',  members.list);
-router.get('/members/:memberId', member.exists, members.detail);
-router.patch('/members/:memberId',  member.exists, upload.single('profilePicture'),  members.edit);
+router.get('/members', secure.isAuthenticated, members.list);
+router.get('/members/:memberId', secure.isAuthenticated, member.exists, members.detail);
+router.patch('/members/:memberId', secure.isAuthenticated, member.exists, upload.single('profilePicture'),  members.edit);
 
 router.post('/register', secure.isNotAuthenticated, upload.single('profilePicture'), members.register);
 router.post('/login', secure.isNotAuthenticated, members.login);
