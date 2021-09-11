@@ -1,6 +1,6 @@
 import React from "react"
 import Header from "./components/misc/header/Header";
-import { Route, Switch, Redirect} from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 import ConversationsList from "./components/conversations/conversations-list/ConversationsList";
 import MembersList from "./components/member/members-list/MembersList";
 import Footer from "./components/misc/footer/Footer";

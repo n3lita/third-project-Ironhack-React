@@ -42,13 +42,13 @@ const memberSchema = new Schema({
         type: [String],
         enum: interests
     },
-    location: {
+/*     location: {
         type: { 
             type: String, 
             default: "Point" 
         },
         coordinates: [Number]
-  },
+  }, */
     isAdmin: {
         type: Boolean,
         default: false

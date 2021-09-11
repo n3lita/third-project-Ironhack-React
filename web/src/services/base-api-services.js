@@ -12,6 +12,10 @@ http.interceptors.response.use(
     return response.data;
   }, 
   (error) => {
+    if(error?.response?.status === 401 && window.location.pathname !== "/register" && window.location.pathname !== "/login") {
+      localStorage.removeItem("member");
+      window.location.replace("/login")
+    }
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
     return Promise.reject(error);

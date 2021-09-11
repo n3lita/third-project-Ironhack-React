@@ -8,6 +8,8 @@ function Register() {
     const [error, setError] = useState()
 
     function handleSubmit(event) {
+        event.preventDefault()
+
         service.register({
             name: event.target.name.value,
             email: event.target.email.value,

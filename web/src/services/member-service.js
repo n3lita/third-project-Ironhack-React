@@ -15,13 +15,14 @@ const list = (interests) => {
 const details = (id) => http.get(`/members/${id}`);
 
 const register = (member) => {
+    console.log("MEMBERRR", member)
     const data = new FormData()
     data.append("name", member.name)
     data.append('email', member.email)
     data.append('password', member.password)
     data.append('profilePicture', member.profilePicture)
 
-    return http.post("/members", data)
+    return http.post("/register", data)
 }
 
 const service = {

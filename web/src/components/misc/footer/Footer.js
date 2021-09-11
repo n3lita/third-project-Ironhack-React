@@ -5,7 +5,6 @@ import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
 import SmsOutlinedIcon from '@material-ui/icons/SmsOutlined';
 import GroupOutlinedIcon from '@material-ui/icons/GroupOutlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
-import { Redirect } from "react-router-dom"
 
 
 
