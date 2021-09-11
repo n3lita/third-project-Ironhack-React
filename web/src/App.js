@@ -9,11 +9,12 @@ import MemberDetail from "./components/member/member-detail/MemberDetail";
 
 
 
+
 function App() {
   return (
 
     <div className="App">
-      <BrowserRouter>
+      
       <Switch>
         <Route exact path="/conversations">
         <Header backButton="/" />
@@ -34,7 +35,6 @@ function App() {
         <Route exact path="/members/:id" component={MemberDetail} />
 
       </Switch>
-      </BrowserRouter>
     </div>
   );
 }

@@ -24,7 +24,7 @@ const memberSchema = new Schema({
     },
     profilePicture: {
         type: String,
-        default: "/img/defProfilePicture.png"
+        default: "https://res.cloudinary.com/nela/image/upload/v1631350300/girlzfriends/defProfilePicture_fwuhnr.png"
     },
     /*    interests: {
            type: [{

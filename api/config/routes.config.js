@@ -9,7 +9,7 @@ const conversations = require('../controllers/conversations.controller')
 const upload = require('../config/multer.config')
 
 router.get('/members',  members.list);
-router.get('/members/:memberId',  member.exists, members.detail);
+router.get('/members/:memberId', member.exists, members.detail);
 router.patch('/members/:memberId',  member.exists, upload.single('profilePicture'),  members.edit);
 
 router.post('/register', secure.isNotAuthenticated, upload.single('profilePicture'), members.register);

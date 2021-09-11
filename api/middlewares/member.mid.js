@@ -3,7 +3,11 @@ const Member = require("../models/member.model");
 
 module.exports.exists = (req, res, next) => {
     const id = req.params.memberId || req.params.id
-    Member.findById(id)
+
+    if (req.params.memberId === 'me') {
+       return res.json(req.user)
+    } else {
+        Member.findById(id)
         .then(member => {
             if (member) {
                 req.member = member;
@@ -13,4 +17,6 @@ module.exports.exists = (req, res, next) => {
             }
         })
         .catch(next)
+    } 
+
 }

@@ -3,8 +3,6 @@ const createError = require("http-errors")
 const Member = require("../models/member.model")
 const passport = require("passport")
 
-
-
 module.exports.list = (req, res, next) => {
     const criterial = {};
 
@@ -20,6 +18,8 @@ module.exports.list = (req, res, next) => {
 };
 
 module.exports.detail = (req, res, next) => {
+    console.log(req.user)
+    console.log(req.params)
     res.json(req.member);
 };
 

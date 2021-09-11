@@ -9,10 +9,6 @@
 .item1_header {
     display: flex;
 }
- .itemInterests {
-    display: flex;
-    flex-direction: column;
-}
 
 .item1_header_text{
     padding-left: 20px;
@@ -29,11 +25,19 @@ a {
     color: #191C32;
 }
 
-.itemInterests{
+.memberItem{
     margin-top: 10px;
 }
 
 .interestImg {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
+    margin: 5px 5px;
+}
+
+.itemInterests {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
 }
