@@ -1,27 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap");
 
-.item_image {
+.item1_image {
  width: 120px;
  height: 120px;
- border: 1px solid #F1884E;
  border-radius: 20px
 }
 
-.item_header {
+.item1_header {
     display: flex;
 }
- .item {
+ .itemInterests {
     display: flex;
     flex-direction: column;
 }
 
-.item_header_text{
-    flex: 1;
+.item1_header_text{
     padding-left: 20px;
     margin-left: 5px;
     font-family: "Montserrat", serif;
 }
 
-h4, p {
+.description, .descriptiontext {
     margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #191C32;
+}
+
+.itemInterests{
+    margin-top: 10px;
+}
+
+.interestImg {
+    width: 20px;
+    height: 20px;
 }

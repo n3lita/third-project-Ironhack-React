@@ -1,9 +1,9 @@
 import React from "react"
-import Header from "./components/header/Header";
+import Header from "./components/misc/header/Header";
 import { BrowserRouter, Route, Switch} from "react-router-dom"
 import ConversationsList from "./components/conversations/conversations-list/ConversationsList";
 import MembersList from "./components/member/members-list/MembersList";
-import Footer from "./components/footer/Footer";
+import Footer from "./components/misc/footer/Footer";
 import ConversationScreen from "./components/conversations/conversation-screen/ConversationScreen";
 import MemberDetail from "./components/member/member-detail/MemberDetail";
 

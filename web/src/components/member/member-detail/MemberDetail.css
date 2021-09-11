@@ -1,0 +1,23 @@
+.detailContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    justify-content: space-between;
+    width: 600px;
+    padding: 20px;
+    max-width: 85vw;
+    height: 67vh;
+    margin: 15px 0;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #F1884E;
+    color: #191C32;
+    background-color: #FFDFAF;
+
+}
+
+.memberDetail{
+    display: flex; 
+    justify-content: center;
+}
