@@ -1,13 +1,14 @@
 import React from "react"
 import Header from "./components/misc/header/Header";
 import { Route, Switch } from "react-router-dom"
-import ConversationsList from "./components/conversations/conversations-list/ConversationsList";
 import MembersList from "./components/member/members-list/MembersList";
 import Footer from "./components/misc/footer/Footer";
 import ConversationScreen from "./components/conversations/conversation-screen/ConversationScreen";
 import MemberDetail from "./components/member/member-detail/MemberDetail";
 import Login from "./components/auth/Login/Login";
 import Register from "./components/auth/Register/Register";
+import Conversations2 from "./components/messenger/conversations2-list/conversations2";
+import ChatBox from "./components/messenger/chatbox/Chatbox";
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
       <Switch>
         <Route exact path="/conversations">
         <Header backButton="/" />
-        <ConversationsList/>
+        <Conversations2/>
         </Route>
 
         <Route exact path="/">
@@ -35,6 +36,12 @@ function App() {
         <Route exact path="/members/:id" component={MemberDetail} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
+
+        <Route exact path="/chats">
+          <ChatBox/>
+        </Route>
+
+
       </Switch>
     </div>
   );

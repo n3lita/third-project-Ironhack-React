@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import interestsData from './../../../assets/data/interests.json'
 
+import "./MemberFilter.css"
+
 function MemberFilter(props) {
     const [currentInterests, setCurrentInterests] = useState([])
 
@@ -19,7 +21,7 @@ function MemberFilter(props) {
 
     return (
         <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Interests
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -39,7 +41,6 @@ function MemberFilter(props) {
                         )
                     })
                 }
-
             </ul>
         </div>
     )

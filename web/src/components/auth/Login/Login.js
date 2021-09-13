@@ -78,9 +78,6 @@ function Login() {
                                 <input type="password" name="password" placeholder="Password" onChange={handleChange} value={data.password} />
                                 <input type="submit" name="submit" value="Login" />
                                 <div className="col-md-12">
-                                    <ul className="social-network social-circle">
-                                        <li><a href="#" className="icoGoogle" title="Google +"><i className="fab fa-google"></i></a></li>
-                                    </ul>
                                 </div>
                                 <Link to="/login">Login</Link>
                             </form>

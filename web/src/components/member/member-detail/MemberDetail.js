@@ -14,6 +14,12 @@ function MemberDetail(props) {
             .catch(error => console.error(error))
     }, [props])
 
+    function handleClick(event){
+        event.preventDefault();
+        
+
+    }
+
     return (
         <>
             <Header />
@@ -23,7 +29,7 @@ function MemberDetail(props) {
                     {member.age}</div>
                     <div><p>"{member.description}"</p></div>
                     <div>{member.interests}</div>
-                    <div><button>Chat</button></div>
+                    <div><button onClick={handleClick}>Chat</button></div>
                 </div>
             </div>
             <Footer />

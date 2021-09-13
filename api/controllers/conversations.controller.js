@@ -14,6 +14,7 @@ Conversation.create({
 
 module.exports.list = (req, res, next) => {
     Conversation.find({$in: [req.user.id]})
+    .populate("participants")
     .populate("messages")
     .then(conversation => res.status(200).json(conversation))
     .catch(next)

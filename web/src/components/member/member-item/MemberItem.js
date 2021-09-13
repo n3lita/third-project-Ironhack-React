@@ -3,7 +3,7 @@ import "./MemberItem.css"
 import { Link } from "react-router-dom"
 
 
-function MemberItem({ id, name, age, description, interests, profilePicture, location }) {
+function MemberItem({ id, name, age, interests, profilePicture, location }) {
 
     return (
         <div className="memberItem">
@@ -13,10 +13,10 @@ function MemberItem({ id, name, age, description, interests, profilePicture, loc
                     <div className="item1_header_text">
                         <h3 className="item1_name">{name}, {age}</h3>
 
-                        <div className="item1_header_text">
+{/*                         <div className="item1_header_text">
                             <div className="item1_location">{location.coordinates}</div>
                         </div>
-                    </div>
+ */}                    </div>
                 </div>
                 <div className="itemInterests">
                     {
@@ -25,12 +25,7 @@ function MemberItem({ id, name, age, description, interests, profilePicture, loc
                         })
                     }
                 </div>
-
-                {/*             <div className="description_section">
-                <h4 className="description">Description</h4>
-                <p className="description_text">{description}</p>
-            </div>
- */}            </Link>
+           </Link>
 
         </div >
     )

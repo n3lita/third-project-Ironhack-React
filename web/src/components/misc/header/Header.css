@@ -7,6 +7,7 @@
     z-index: 100;
     border-bottom: 1px solid #FFDFAF;
     background-color: #E4D7FF;
+    height:70px;
 }
 
 .header_logo {
@@ -15,4 +16,5 @@
     color: #4C269A;
     font-family: 'Pacifico', cursive;
     font-size: 20px;
+    padding-top: 5px;
 }

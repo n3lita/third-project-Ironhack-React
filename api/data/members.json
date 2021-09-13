@@ -9,6 +9,8 @@
 },
 {
     "name": "Joanna D",
+    "email": "joana@go.com",
+    "password": "12345678",
     "age": "34",
     "interests": ["yoga", "mary jane", "happy hour"]
 },

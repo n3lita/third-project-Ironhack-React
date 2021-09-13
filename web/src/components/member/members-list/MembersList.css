@@ -6,14 +6,13 @@
     margin-top: 2vh;
     list-style: none;
     padding: 0;
-    background-color:#FFDFAF;
 
 }
 .memberBlock {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    background-color: white;
+    background-color: #E4D7FF;
     width: 600px;
     padding: 10px;
     max-width: 85vw;
@@ -22,7 +21,6 @@
     background-size: cover;
     background-position: center;
     margin-top: 2vh;
-    border: 2px solid #F1884E;
-    box-shadow: 0px 18px 53px 0px rgba(241, 136, 78, 0.2);
+    border: 2px solid #4C269A;
 
 }

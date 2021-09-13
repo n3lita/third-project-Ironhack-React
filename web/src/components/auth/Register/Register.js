@@ -26,7 +26,7 @@ function Register() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+  {/*           <form onSubmit={handleSubmit}>
                 <div>
                     Email
                     <input type="email" name="email"></input>
@@ -59,7 +59,35 @@ function Register() {
                     </small>
                 </div>
                 <button type="submit">Create</button>
-            </form>
+            </form> */}
+
+            <div className="container">
+    <div className="row">
+        <div className="col-md-6">
+            <div className="card">
+                <form onSubmit={handleSubmit} className="box">
+                    <h1>Register</h1>
+                    <div><input type="text" name="name" placeholder="Name"/>
+                    <small style={{ color: 'red' }}>{error?.name}</small>
+                    </div>
+                    <div><input type="text" name="email" placeholder="Email"/>
+                    <small style={{ color: 'red' }}>{error?.email}</small>
+                    </div> 
+                    <div><input type="password" name="password" placeholder="Password"/>
+                    <small style={{ color: 'red' }}>{error?.password}</small>
+                    </div>
+                    <div><input type="file" name="ProfilePicture" placeholder="Upload a Picture"/>
+                    <small style={{ color: 'red' }}>{error?.profilePicture}</small>
+                    </div>
+                    <input type="submit" name="Register"/>
+                    <div className="col-md-12">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
         </div>
     )
 }

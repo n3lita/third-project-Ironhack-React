@@ -4,7 +4,11 @@ const Schema = mongoose.Schema
 
 const ConversationSchema = new Schema({
     participants: {
-        type: Array,
+        type: [{
+            type: mongoose.Schema.Types.ObjectId, 
+            Ref: "Member"
+        }],
+        
     }
 }, {
     timestamps: true,

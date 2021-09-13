@@ -15,7 +15,6 @@ const list = (interests) => {
 const details = (id) => http.get(`/members/${id}`);
 
 const register = (member) => {
-    console.log("MEMBERRR", member)
     const data = new FormData()
     data.append("name", member.name)
     data.append('email', member.email)

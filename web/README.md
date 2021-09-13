@@ -1,3 +1,14 @@
+GirlzFriends. 
+This is an app, for women interested to meet other women. 
+The app is created for phone format. 
+
+Run `npm run dev` for the API and `npm run start` for the React Frontend. 
+
+The app has been built using MongoDB, Mongoose, ExpressJS, NodeJS, React, Boostrap, Cloudinary, Axios, Passport, Multer.
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
