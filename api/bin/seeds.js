@@ -22,7 +22,9 @@ mongoose.connection.once("open", () => {
                location: {
                   type: "Point",
                   coordinates: [0,0]
-               }
+               },
+               description: member.description? member.description: faker.lorem.sentence(40),
+               profilePicture: member.profilePicture? member.profilePicture: "https://res.cloudinary.com/nela/image/upload/v1631350300/girlzfriends/defProfilePicture_fwuhnr.png"
             };
             return new Member(newMember).save()
          })

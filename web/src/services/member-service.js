@@ -24,12 +24,15 @@ const register = (member) => {
     return http.post("/register", data)
 }
 
+const edit = (id) => http.patch(`/members/${id}`)
+
 const service = {
     list, 
     getUser, 
     login, 
     logout, 
-    register
+    register,
+    edit
 };
 
 export default service;

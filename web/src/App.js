@@ -3,7 +3,7 @@ import Header from "./components/misc/header/Header";
 import { Route, Switch, Redirect } from "react-router-dom"
 import MembersList from "./components/member/members-list/MembersList";
 import Footer from "./components/misc/footer/Footer";
-import ConversationScreen from "./components/conversations/conversation-screen/ConversationScreen";
+//import ConversationScreen from "./components/conversations/conversation-screen/ConversationScreen";
 import MemberDetail from "./components/member/member-detail/MemberDetail";
 import Login from "./components/auth/Login/Login";
 import Register from "./components/auth/Register/Register";

@@ -1,12 +1,10 @@
-import Header from "../../misc/header/Header"
 import Message from "../message2/Message"
 
 import "./ChatBox.css"
 
-function ChatBox(){
+function ChatBox({ }){
     return(
         <>
-        <Header/>
         <div className="chatBox">
             <div className="chatBoxWrapper">
                 <div className="chatBoxTop">

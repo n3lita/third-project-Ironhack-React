@@ -2,7 +2,7 @@ import { IconButton } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 import { useContext } from 'react';
 import "./Footer.css"
-import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
+// import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
 import SmsOutlinedIcon from '@material-ui/icons/SmsOutlined';
 import GroupOutlinedIcon from '@material-ui/icons/GroupOutlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';

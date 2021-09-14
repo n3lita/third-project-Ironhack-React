@@ -5,19 +5,24 @@
     "interests": ["dance", "party", "happy hour", "travel"],
     "isAdmin": true,
     "email": "girlzfriends@girlzfriends.com",
-    "password": "12345678"
+    "description": "Hello! I am here to meet new people. I enjoy dancing and going out. We could meet for a drink, let's talk",
+    "password": "12345678",
+    "profilePicture": "https://res.cloudinary.com/nela/image/upload/v1631365984/girlzfriends/c4b19mzhx40yrjqtny8h.webp"
 },
 {
     "name": "Joanna D",
     "email": "joana@go.com",
     "password": "12345678",
     "age": "34",
-    "interests": ["yoga", "mary jane", "happy hour"]
+    "interests": ["yoga", "mary jane", "happy hour"],
+    "description": " I am new in the city, looking for new friends :) ",
+    "profilePicture": "https://res.cloudinary.com/nela/image/upload/v1631297508/girlzfriends/q39iofz3ciwupvh5ctxu.jpg"
 },
 {
     "name": "Lady D",
     "age": "28",
-    "interests": ["fashion", "dance", "party", "food"]
+    "interests": ["fashion", "dance", "party", "food"],
+    "profilePicture":"https://res.cloudinary.com/nela/image/upload/v1631297443/girlzfriends/vrjruu4lo5nerfbfjtlj.jpg"
 },
 {
     "name": "Lisa H",

@@ -3,27 +3,49 @@ import { useHistory } from "react-router"
 import service from "../../../services/member-service"
 import { Link } from "react-router-dom"
 import "./Register.css"
+import { useForm } from "react-hook-form"
 
 function Register() {
     const history = useHistory()
-    const [error, setError] = useState()
+    const { register, handleSubmit, setError, formState: { errors } } = useForm({ mode: "all" });
 
-    function handleSubmit(event) {
-        event.preventDefault()
-
-        service.register({
-            name: event.target.name.value,
-            email: event.target.email.value,
-            password: event.target.password.value,
-            profilePicture: event.target.profilePicture.files[0]
-        })
-            .then(() => {
-                history.push("/login")
-            })
+    const onRegisterFormSubmit = member => {
+        service.register(member)
+            .then(() => history.push("/login"))
             .catch(error => {
-                setError(error.response.data.errors)
+                const { message, errors } = error.response?.data || error;
+                if (errors) {
+                    Object.keys(errors).forEach(input => {
+                        setError(input, { type: "manual", message: errors[input] });
+                    })
+                } else {
+                    setError("email", { type: "manual", message: message });
+                }
             })
     }
+
+
+
+
+    /* 
+        const [error, setError] = useState()
+    
+        function handleSubmit(event) {
+            event.preventDefault()
+    
+            service.register({
+                name: event.target.name.value,
+                email: event.target.email.value,
+                password: event.target.password.value,
+                profilePicture: event.target.profilePicture.files[0]
+            })
+                .then(() => {
+                    history.push("/login")
+                })
+                .catch(error => {
+                    setError(error.response.data.errors)
+                })
+        } */
 
     return (
         <div className="registerView">
@@ -31,27 +53,36 @@ function Register() {
                 <div className="row">
                     <div className="col-md-6">
                         <div className="card">
-                            <form onSubmit={handleSubmit} className="box">
+                            <form onSubmit={handleSubmit(onRegisterFormSubmit)} className="box">
                                 <h1>Register</h1>
-                                <div><input type="text" name="name" placeholder="Name" />
-                                    <small style={{ color: 'red' }}>{error?.name}</small>
-                                </div>
-                                <div><input type="text" name="email" placeholder="Email" />
-                                    <small style={{ color: 'red' }}>{error?.email}</small>
-                                </div>
-                                <div><input type="password" name="password" placeholder="Password" />
-                                    <small style={{ color: 'red' }}>{error?.password}</small>
-                                </div>
-                                <div> 
-                                    <label for="file-upload" className="custom-file-upload">
-                                    <i class="fa fa-cloud-upload"></i> Select an image
-                                    </label>
 
-                                    <input id="file-upload" type="file" name="ProfilePicture" placeholder="Upload a Picture" />
-                                    <small style={{ color: 'red' }}>{error?.profilePicture}</small>
-                                    {error && <div className="alert alert-danger">{error}</div>}
+                                <div><input type="text" {...register("name", { required: "Name is required" })} name="name" placeholder="Name"
+                                    className={`form-control ${errors.name ? 'is-invalid' : ''}`} />
+                                    {errors.name && <div className="invalid-feedback">{errors.name.message}</div>}
                                 </div>
-                                <input type="submit" name="Register" />
+
+                                <div><input type="email" {...register("email", { required: "Email is required" })}
+                                    className={`form-control ${errors.email ? 'is-invalid' : ''}`} name="email" placeholder="user@example.com" />
+                                    {errors.email && <div className="invalid-feedback">{errors.email.message}</div>}
+                                </div>
+
+                                <div><input type="password" {...register("password", { required: 'Password is required' })} name="password" placeholder="Password"
+                                    className={`form-control ${errors.password ? 'is-invalid' : ''}`} />
+                                    {errors.password && <div className="invalid-feedback">{errors.password.message}</div>}
+                                </div>
+
+                                <div>
+                                    <label for="file-upload" className="custom-file-upload">
+                                        <i class="fa fa-cloud-upload"></i> Select an image
+                                    </label>
+                                    <input id="file-upload" type="file" {...register("profilePicture")}
+                                        className={`form-control ${errors.profilePicture ? 'is-invalid' : ''}`} name="ProfilePicture" placeholder="Upload a Picture" />
+                                    {errors.profilePicture && <div className="invalid-feedback">{errors.profilePicture.message}</div>}
+                                </div>
+
+                                <input type="submit" name="Register" disabled={Object.keys(errors).length !== 0} />
+
+
                                 <div className="col-md-12">
                                     <div>
                                         <a href="http://localhost:3001/api/authenticate/google" className="btn btn-danger" role="button"><i className="fa fa-google" /> Login with Google</a>
@@ -64,7 +95,7 @@ function Register() {
                 </div>
             </div>
             <img className="registerImage" src="https://res.cloudinary.com/nela/image/upload/v1631621955/girlzfriends/assets/undraw_happy_feeling_slmw_pxix9x.svg" alt="girls" />
-            </div>
+        </div>
     )
 }
 

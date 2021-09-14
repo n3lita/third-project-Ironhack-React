@@ -9,7 +9,7 @@ export function AuthContextProvider( {children} ) {
     useEffect(() => {
         const memberId = localStorage.getItem("member");
         if (memberId) {
-            service.details("me")
+            service.getUser("me")
             .then((member) =>  setMember(member))
         }
     },[])
