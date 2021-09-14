@@ -4,11 +4,15 @@ import Footer from "../../misc/footer/Footer";
 import Header from "../../misc/header/Header";
 import "./MemberDetail.css"
 import getImageByName from "../../../assets/js/helperImg"
-import { Link } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
+import conversationsService from "../../../services/conversations-service";
 
 
 function MemberDetail(props) {
-    const [member, setMember] = useState({})
+
+    const { id } = useParams();
+    const history = useHistory()
+    const [member, setMember] = useState()
 
     useEffect(() => {
         const id = props.match?.params?.id;
@@ -16,6 +20,14 @@ function MemberDetail(props) {
             .then(member => setMember(member))
             .catch(error => console.error(error))
     }, [props])
+
+
+    const handleConversationClick = () => {
+        conversationsService.createConversation(id)
+        .then((conversation) => {
+            history.push(`/conversations/${conversation.id}`)
+        })
+    }
 
     return (
         <>
@@ -26,8 +38,8 @@ function MemberDetail(props) {
                         {member.age}</div>
                     <div><p>"{member.description}"</p></div>
                     <div className="interests">
-   {/*                      {
-                            member.interests.map(interest => {
+                        {/* {
+                           member && member.interests.map(interest => {
                                 return (
                                 <div className="interest">
                                 <img src={getImageByName(interest)} key={interest} alt="interest" className="interestImg" />
@@ -35,10 +47,10 @@ function MemberDetail(props) {
                                 </div>
                                 )
                             })
-                        } */}
+                        }  */}
                     </div>
                 </div>
-                <Link to={`/conversation/${member.id}`}><button className="chatButton">Chat</button></Link>
+                <button className="chatButton" onClick={handleConversationClick}>Chat</button>
             </div>
             <Footer />
         </>

@@ -29,7 +29,7 @@ function App() {
           <Footer/>
         </Route>
 
-        <Route exact path="/conversation/:receiverId">
+        <Route exact path="/conversations/:conversationId">
           <Header backButton="/conversations" />
           <ChatBox/>
         </Route>

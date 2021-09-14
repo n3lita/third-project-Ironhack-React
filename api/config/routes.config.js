@@ -28,10 +28,10 @@ router.post('/meetups/:meetupId/subscribe', secure.isAuthenticated, meetups.subs
 router.post('/meetups/:meetupId/comments', secure.isAuthenticated, meetups.createComment);
 
 
-router.post('/conversation/:receiverId', secure.isAuthenticated, conversations.create)
+router.post('/conversations/:receiverId', secure.isAuthenticated, conversations.create)
 router.get('/conversations', secure.isAuthenticated, conversations.list)
 router.delete('/conversations/:conversationId', secure.isAuthenticated, conversations.delete)
-router.post('/conversations/:conversationId', secure.isAuthenticated, conversations.createMessage)
+router.post('/conversations/message/:conversationId', secure.isAuthenticated, conversations.createMessage)
 router.get('/conversations/:conversationId', secure.isAuthenticated, conversations.detail)
 
 module.exports = router;

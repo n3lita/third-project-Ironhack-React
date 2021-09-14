@@ -5,7 +5,7 @@ const Conversation = require("../models/conversation.model")
 const Message = require("../models/message.model")
 
 module.exports.create = (req, res, next) => {
-    Conversation.find({ participants: { $all: [req.user.id, req.params.receiverId] }})
+    Conversation.find({ participants: { $all: [req.user.id, req.params.receiverId] } })
         .then(conversation => {
             if (conversation) {
                 return res.json(conversation)
@@ -17,8 +17,7 @@ module.exports.create = (req, res, next) => {
                     .catch(next)
             }
         })
-
- }
+}
 
 module.exports.list = (req, res, next) => {
     Conversation.find({ $in: [req.user.id] })
