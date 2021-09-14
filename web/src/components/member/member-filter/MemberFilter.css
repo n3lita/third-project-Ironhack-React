@@ -1,9 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap");
 
 .btn{
     border: 1px solid black;
-    margin-top: 2px;
-    width: 100%; 
+    margin-top: 5px;
+    width: 90%; 
     overflow: scroll;
+    background-color:#4C269A;
+    color: white;
+    font-weight: 800;
+    font-family: "Montserrat", serif;
 }
 
 .dropdown{
@@ -13,7 +18,20 @@
 }
 
 .dropdown-menu.show{
-    width: 100%;
+    width: 90%;
     max-height: 15.5em;
     overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(76,38,154,.25)
+
+}
+.btn:hover{
+    color:white;
+}
+.form-check-input{
+    border: 1px solid rgba(76,38,154,.25)
+}
+.dropdown-item{
+    color: #191C32;
 }

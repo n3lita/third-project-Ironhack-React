@@ -12,6 +12,8 @@ Conversation.create({
 .catch(next)
 }
 
+// get conversations of the user logged in
+
 module.exports.list = (req, res, next) => {
     Conversation.find({$in: [req.user.id]})
     .populate("participants")

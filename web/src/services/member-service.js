@@ -12,7 +12,7 @@ const list = (interests) => {
     return  http.get(`/members${interests}`);
 };
 
-const details = (id) => http.get(`/members/${id}`);
+const getUser = (id) => http.get(`/members/${id}`);
 
 const register = (member) => {
     const data = new FormData()
@@ -26,7 +26,7 @@ const register = (member) => {
 
 const service = {
     list, 
-    details, 
+    getUser, 
     login, 
     logout, 
     register

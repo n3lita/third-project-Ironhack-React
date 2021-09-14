@@ -25,7 +25,7 @@ function ConversationScreen() {
 
     return (
         <div className="chatScreen">
-            <p className="chatScreen_timestamp">You matched with Ellen on 10/08/21</p>
+            <p className="chatScreen_timestamp">Chat with Ellen</p>
             {messages.map(message => (
                 message.name ? (
                     <div className="chatScreen_message">

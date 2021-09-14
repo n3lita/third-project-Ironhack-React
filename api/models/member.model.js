@@ -61,6 +61,9 @@ const memberSchema = new Schema({
     otherPictures: {
         type: String,
         default: ""
+    }, 
+    social: {
+        google: String
     }
 }, {
     timestamps: true,

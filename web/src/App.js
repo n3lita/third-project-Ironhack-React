@@ -1,6 +1,6 @@
 import React from "react"
 import Header from "./components/misc/header/Header";
-import { Route, Switch } from "react-router-dom"
+import { Route, Switch, Redirect } from "react-router-dom"
 import MembersList from "./components/member/members-list/MembersList";
 import Footer from "./components/misc/footer/Footer";
 import ConversationScreen from "./components/conversations/conversation-screen/ConversationScreen";
@@ -9,6 +9,7 @@ import Login from "./components/auth/Login/Login";
 import Register from "./components/auth/Register/Register";
 import Conversations2 from "./components/messenger/conversations2-list/conversations2";
 import ChatBox from "./components/messenger/chatbox/Chatbox";
+import GoogleCallback from "./components/auth/GoogleCallback";
 
 
 function App() {
@@ -30,18 +31,18 @@ function App() {
 
         <Route exact path="/conversation/:receiverId">
           <Header backButton="/conversations" />
-          <ConversationScreen/>
+          <ChatBox/>
         </Route>
 
         <Route exact path="/members/:id" component={MemberDetail} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
 
-        <Route exact path="/chats">
+{/*         <Route exact path="/chats">
           <ChatBox/>
-        </Route>
-
-
+        </Route> */}
+        <Route exact path="/google/cb" component={GoogleCallback}/>
+        <Redirect to="/"/>
       </Switch>
     </div>
   );

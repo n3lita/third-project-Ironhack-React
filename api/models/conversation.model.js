@@ -4,12 +4,8 @@ const Schema = mongoose.Schema
 
 const ConversationSchema = new Schema({
     participants: {
-        type: [{
-            type: mongoose.Schema.Types.ObjectId, 
-            Ref: "Member"
-        }],
-        
-    }
+        type: Array
+     }
 }, {
     timestamps: true,
     toJSON: {

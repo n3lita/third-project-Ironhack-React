@@ -37,55 +37,31 @@ function Login() {
             })
     }
     return (
-        <div>
-            {/*             {error && <div className="alert alert-danger">{error}</div>}
-            <form onSubmit={handleSubmit} className="formInputs">
-                <div >
-                    Email
-                    <input
-                        name="email"
-                        type="text"
-                        onChange={handleChange}
-                        value={data.email}
-                    />
-                </div>
-                <div>
-                    Password
-                    <input
-                        name="password"
-                        type="password"
-                        onChange={handleChange}
-                        value={data.password}
-                    />
-                </div>
-                <button type="submit">Login</button>
-                <div>
-                    <a href="http://localhost:3001/api/authenticate/google">Google login</a>
-                </div>
-                <Link to="/login">Login</Link>
-            </form> */}
-
-            {/* ----------------------------- */}
-            <div class="container">
+        
+            <div className="container">
                 <div className="row">
                     <div className="col-md-6">
+                    {error && <div className="alert alert-danger">{error}</div>}
                         <div className="card">
-                            {error && <div className="alert alert-danger">{error}</div>}
                             <form onSubmit={handleSubmit} className="box">
                                 <h1>Login</h1>
                                 <p className="text-muted"> </p>
-                                <input type="text" name="email" placeholder="email" onChange={handleChange} value={data.email} />
+                                <input type="text" name="email" placeholder="user@example.com" onChange={handleChange} value={data.email} />
                                 <input type="password" name="password" placeholder="Password" onChange={handleChange} value={data.password} />
                                 <input type="submit" name="submit" value="Login" />
+                                <div>
+                                    <a href="http://localhost:3001/api/authenticate/google" className="btn btn-danger" role="button"><i className="fa fa-google" /> Login with Google</a>
+                                    <Link to="/register" className="btn btn-secondary" role="button">Register</Link>
+                                    </div>
+
                                 <div className="col-md-12">
                                 </div>
-                                <Link to="/login">Login</Link>
                             </form>
                         </div>
                     </div>
                 </div>
+                <img src="https://res.cloudinary.com/nela/image/upload/v1631618933/girlzfriends/assets/undraw_girl_just_wanna_have_fun_9d5u_vfw8ub.svg" alt="girls" />
             </div>
-        </div>
     )
 }
 

@@ -8,6 +8,8 @@
 
 .item1_header {
     display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .item1_header_text{

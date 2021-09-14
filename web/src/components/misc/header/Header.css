@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     z-index: 100;
-    border-bottom: 1px solid #FFDFAF;
+    border-bottom: 2px solid #FFDFAF;
     background-color: #E4D7FF;
     height:70px;
 }

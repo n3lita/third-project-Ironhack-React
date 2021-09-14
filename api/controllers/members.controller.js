@@ -97,7 +97,7 @@ module.exports.doLoginWithGoogle = (req, res, next) => {
                 if (error) {
                     next(error)
                 } else {
-                    res.redirect(process.env.WEB_URL || "http://localhost:3000") //web de REACT
+                    res.redirect(`${process.env.REACT_APP_URL}/google/cb`)
                 }
             })
         }

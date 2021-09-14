@@ -1,23 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap");
 .detailContainer {
     display: flex;
     flex-direction: column;
     background-color: white;
     justify-content: space-between;
     width: 600px;
-    padding: 20px;
     max-width: 85vw;
+    padding: 20px;
     height: 67vh;
-    margin: 15px 0;
+    margin-top: 15px;
     border-radius: 20px;
     background-size: cover;
     background-position: center;
-    border: 1px solid #F1884E;
+    border: 1px solid #4C269A;
     color: #191C32;
-    background-color: #FFDFAF;
+    background-color: #E4D7FF;
 
 }
 
 .memberDetail{
-    display: flex; 
+    display: flex;
+    flex-direction: column; 
     justify-content: center;
+    align-items: center;
 }
+
+.interests{
+    display: flex;
+    justify-content: space-between;
+}
+
+.interest_text{
+    font-size: 14px;
+}
+
+.chatButton{
+    border: 1px solid black;
+    width: 90%; 
+    background-color:#4C269A;
+    color: white;
+    font-weight: 800;
+    font-size: 1.2rem;
+    font-family: "Montserrat", serif;
+    border-radius: .25rem;
+    cursor: pointer;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    width: 600px;
+    max-width: 85vw;
+    padding: 5px 0;
+    margin-top: 7px;
+}
+

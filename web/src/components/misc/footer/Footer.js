@@ -32,9 +32,9 @@ function Footer() {
                 </IconButton>
             </Link>
 
-            <IconButton className="footer_event">
+{/*             <IconButton className="footer_event">
                 <EventOutlinedIcon fontSize="large" />
-            </IconButton>
+            </IconButton> */}
 
             <Link to="/conversations" >
                 <IconButton className="footer_chat">

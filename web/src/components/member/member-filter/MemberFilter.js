@@ -22,7 +22,7 @@ function MemberFilter(props) {
     return (
         <div className="dropdown">
             <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Interests
+                Filter by Interests
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 {
