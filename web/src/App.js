@@ -10,6 +10,7 @@ import Register from "./components/auth/Register/Register";
 import Conversations2 from "./components/messenger/conversations2-list/conversations2";
 import ChatBox from "./components/messenger/chatbox/Chatbox";
 import GoogleCallback from "./components/auth/GoogleCallback";
+import PrivateRoute from "./components/guards/PrivateRoute";
 
 
 function App() {
@@ -18,29 +19,26 @@ function App() {
     <div className="App">
       
       <Switch>
-        <Route exact path="/conversations">
+        <PrivateRoute exact path="/conversations">
         <Header backButton="/" />
         <Conversations2/>
-        </Route>
+        </PrivateRoute>
 
-        <Route exact path="/">
+        <PrivateRoute exact path="/">
           <Header/>
           <MembersList/>
           <Footer/>
-        </Route>
+        </PrivateRoute>
 
-        <Route exact path="/conversations/:conversationId">
+        <PrivateRoute exact path="/conversations/:conversationId">
           <Header backButton="/conversations" />
           <ChatBox/>
-        </Route>
+        </PrivateRoute>
 
-        <Route exact path="/members/:id" component={MemberDetail} />
+        <PrivateRoute exact path="/members/:id" component={MemberDetail} />
+        
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-
-{/*         <Route exact path="/chats">
-          <ChatBox/>
-        </Route> */}
         <Route exact path="/google/cb" component={GoogleCallback}/>
         <Redirect to="/"/>
       </Switch>

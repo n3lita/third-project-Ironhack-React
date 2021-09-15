@@ -12,7 +12,7 @@ function MemberDetail(props) {
 
     const { id } = useParams();
     const history = useHistory()
-    const [member, setMember] = useState()
+    const [member, setMember] = useState(null)
 
     useEffect(() => {
         const id = props.match?.params?.id;
@@ -24,12 +24,11 @@ function MemberDetail(props) {
 
     const handleConversationClick = () => {
         conversationsService.createConversation(id)
-        .then((conversation) => {
-            history.push(`/conversations/${conversation.id}`)
-        })
+            .then((conversation) => {
+                history.push(`/conversations/${conversation.id}`)
+            })
     }
-
-    return (
+    return member && (
         <>
             <Header />
             <div className="memberDetail">
@@ -38,16 +37,15 @@ function MemberDetail(props) {
                         {member.age}</div>
                     <div><p>"{member.description}"</p></div>
                     <div className="interests">
-                        {/* {
-                           member && member.interests.map(interest => {
+                        { member && member.interests.map(interest => {
                                 return (
-                                <div className="interest">
-                                <img src={getImageByName(interest)} key={interest} alt="interest" className="interestImg" />
-                                <div className="interest_text">{interest}</div>
-                                </div>
+                                    <div className="interest">
+                                        <img src={getImageByName(interest)} key={interest} alt="interest" className="interestImg" />
+                                        <div className="interest_text">{interest}</div>
+                                    </div>
                                 )
                             })
-                        }  */}
+                        }
                     </div>
                 </div>
                 <button className="chatButton" onClick={handleConversationClick}>Chat</button>
