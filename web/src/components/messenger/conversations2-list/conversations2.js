@@ -2,15 +2,13 @@ import "./conversations2.css"
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext"
 import conversationsService from "../../../services/conversations-service";
-import memberService from "../../../services/member-service"
+import { Link } from "react-router-dom";
 
 
 function Conversations2() {
     console.log()
 
     const { member } = useContext(AuthContext)
-    //console.log(auth.member.id)
-
     const [conversations, setConversations] = useState([])
 
     useEffect(() => {
@@ -28,19 +26,22 @@ function Conversations2() {
                 setConversations(conversations)
             })
             .catch(error => console.log(error))
-    },[member])
+    }, [member])
 
 
 
     return (
         <div className="conversation">
             {conversations.map(conversation => (
-                <div className="conversationRow" key={conversation.id}>
-                    <img className="conversationImg" src={conversation.friend.profilePicture} alt="profile" />
-                    <span className="conversationName">{conversation.friend.name}</span>
-                    <span className="conversationMessage">{conversation.lastMessage.text}</span>
-
-                </div>
+                <Link to={`/conversations/${conversation.id}`}>
+                    <div className="conversation_row" key={conversation.id}>
+                        <img className="conversation_img" src={conversation.friend.profilePicture} alt="profile" />
+                        <div className="conversation_details">
+                            <span className="conversation_name">{conversation.friend.name}</span>
+                            <p className="conversation_message">{conversation?.lastMessage?.text}</p>
+                        </div>
+                    </div>
+                </Link>
             )
             )}
         </div>

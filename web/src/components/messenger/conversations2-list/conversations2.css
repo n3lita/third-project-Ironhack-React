@@ -1,18 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap");
 
-.conversationRow{
+.conversation_row{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 10px;
+    height: 70px;
+    border-bottom: 1px solid #fafafa;
     cursor:pointer;
     margin-top: 10px;
 }
 
-.conversation:hover{
+.conversation_row:hover{
     background-color: rgb(228, 215, 255);
 }
 
-.conversationImg{
+.conversation_img{
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -20,7 +23,15 @@
     margin-right: 20px;
 }
 
-.conversationName{
+.conversation_name{
     font-weight: 700;
     font-family: "Montserrat", serif;
+}
+
+.conversation_details {
+    flex: 1;
+}
+
+.conversation_details > p{
+    color: gray;
 }

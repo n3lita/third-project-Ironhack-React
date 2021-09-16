@@ -25,6 +25,7 @@ function MemberDetail(props) {
     const handleConversationClick = () => {
         conversationsService.createConversation(id)
             .then((conversation) => {
+                console.log('conversation',conversation)
                 history.push(`/conversations/${conversation.id}`)
             })
     }

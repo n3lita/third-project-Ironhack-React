@@ -5,15 +5,18 @@ const Conversation = require("../models/conversation.model")
 const Message = require("../models/message.model")
 
 module.exports.create = (req, res, next) => {
+
     Conversation.find({ participants: { $all: [req.user.id, req.params.receiverId] } })
         .then(conversation => {
-            if (conversation) {
-                return res.json(conversation)
+            if (conversation.length) {
+                return res.json(conversation[0])
             } else {
                 return Conversation.create({
                     participants: [req.user.id, req.params.receiverId]
                 })
-                    .then(conversation => res.status(201).json(conversation))
+                    .then(newConversation => {
+                        res.json(newConversation)
+                    })
                     .catch(next)
             }
         })
