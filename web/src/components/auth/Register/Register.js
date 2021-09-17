@@ -61,7 +61,7 @@ function Register() {
 
                                 <div className="col-md-12">
                                     <div>
-                                        <a href="http://localhost:3001/api/authenticate/google" className="btn btn-danger" role="button"><i className="fa fa-google" /> Login with Google</a>
+                                        <a href={`${process.env.REACT_APP_API_BASE_URL}/authenticate/google`} className="btn btn-danger" role="button"><i className="fa fa-google" /> Login with Google</a>
                                         <Link to="/login" className="btn btn-secondary" role="button">Login</Link>
                                     </div>
                                 </div>
