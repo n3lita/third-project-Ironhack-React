@@ -3,12 +3,11 @@ import Header from "./components/misc/header/Header";
 import { Route, Switch, Redirect } from "react-router-dom"
 import MembersList from "./components/member/members-list/MembersList";
 import Footer from "./components/misc/footer/Footer";
-//import ConversationScreen from "./components/conversations/conversation-screen/ConversationScreen";
 import MemberDetail from "./components/member/member-detail/MemberDetail";
 import Login from "./components/auth/Login/Login";
 import Register from "./components/auth/Register/Register";
-import Conversations2 from "./components/messenger/conversations2-list/conversations2";
-import ChatBox from "./components/messenger/chatbox/Chatbox";
+import Conversations from "./components/conversations/conversations-list/ConversationsList"
+import ChatBox from "./components/conversations/conversation-screen/ConversationScreen";
 import GoogleCallback from "./components/auth/GoogleCallback";
 import PrivateRoute from "./components/guards/PrivateRoute";
 
@@ -21,7 +20,8 @@ function App() {
       <Switch>
         <PrivateRoute exact path="/conversations">
         <Header backButton="/" />
-        <Conversations2/>
+        <Conversations/>
+        <Footer/>
         </PrivateRoute>
 
         <PrivateRoute exact path="/">

@@ -15,17 +15,21 @@ function MemberDetail(props) {
     const [member, setMember] = useState(null)
 
     useEffect(() => {
+        let isMounted = true;
         const id = props.match?.params?.id;
         memberService.getUser(id)
-            .then(member => setMember(member))
-            .catch(error => console.error(error))
+            .then(member => {
+                if (isMounted) {
+                    setMember(member)
+                }
+            })
+        return () => isMounted = false;
     }, [props])
 
 
     const handleConversationClick = () => {
         conversationsService.createConversation(id)
             .then((conversation) => {
-                console.log('conversation',conversation)
                 history.push(`/conversations/${conversation.id}`)
             })
     }
@@ -38,18 +42,18 @@ function MemberDetail(props) {
                         {member.age}</div>
                     <div><p>"{member.description}"</p></div>
                     <div className="interests">
-                        { member && member.interests.map(interest => {
-                                return (
-                                    <div className="interest">
-                                        <img src={getImageByName(interest)} key={interest} alt="interest" className="interestImg" />
-                                        <div className="interest_text">{interest}</div>
-                                    </div>
-                                )
-                            })
+                        {member && member.interests.map(interest => {
+                            return (
+                                <div className="interest" key={interest}>
+                                    <img src={getImageByName(interest)} alt="interest" className="interestImg" />
+                                    <div className="interest_text">{interest}</div>
+                                </div>
+                            )
+                        })
                         }
                     </div>
                 </div>
-                <button className="chatButton" onClick={handleConversationClick}>Chat</button>
+                <button className="chatButton" onClick={handleConversationClick}>say Hi!</button>
             </div>
             <Footer />
         </>

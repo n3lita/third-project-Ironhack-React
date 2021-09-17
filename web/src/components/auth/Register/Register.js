@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { useHistory } from "react-router"
 import service from "../../../services/member-service"
 import { Link } from "react-router-dom"
@@ -23,29 +22,6 @@ function Register() {
                 }
             })
     }
-
-
-
-
-    /* 
-        const [error, setError] = useState()
-    
-        function handleSubmit(event) {
-            event.preventDefault()
-    
-            service.register({
-                name: event.target.name.value,
-                email: event.target.email.value,
-                password: event.target.password.value,
-                profilePicture: event.target.profilePicture.files[0]
-            })
-                .then(() => {
-                    history.push("/login")
-                })
-                .catch(error => {
-                    setError(error.response.data.errors)
-                })
-        } */
 
     return (
         <div className="registerView">

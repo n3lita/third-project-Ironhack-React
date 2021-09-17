@@ -1,60 +1,60 @@
-import { Avatar } from '@material-ui/core';
-import React, { useState } from 'react'
+import { useContext, useEffect, useState } from "react"
+import Message from "../message/Message"
+import { useParams } from 'react-router';
+import conversationsService from "../../../services/conversations-service";
 import "./ConversationScreen.css"
+import { AuthContext } from "../../contexts/AuthContext";
 
+function ChatBox() {
+    const { conversationId } = useParams()
+    const [conversation, setConversation] = useState(null)
+    const [currentMessage, setCurrentMessage] = useState("")
+    const [needReload, setNeedReload] = useState(false)
+    const { member } = useContext(AuthContext)
 
-function ConversationScreen() {
-    const [input, setInput] = useState('');
-    const [messages, setMessages] = useState([
-        {
-            name: "Ellen",
-            image: "https://imagenes.heraldo.es/files/image_990_v1/files/fp/uploads/imagenes/2019/05/17/grumpy-cat.r_d.461-430-12593.jpeg",
-            message: "que tal"
-        },
-        {
-            message: "cool"
-        }
-    ])
+    useEffect(() => {
+        const interval = setInterval(() => {
+            conversationsService.getConversation(conversationId)
+            .then((conversation) => {
+                setConversation(conversation)
+            })
+        },2000)
+        return() => clearInterval(interval)
+    }, [conversationId, needReload])
 
-    const handleSend = e => {
-        e.preventDefault();
+    const handleSendMessage = (e) => {
+        e.preventDefault()
 
-        setMessages([...messages, { message: input }])
-        setInput('');
+        conversationsService.createMessage(conversationId, currentMessage)
+        .then(() => {
+            setNeedReload(!needReload)
+            setCurrentMessage("")
+        }) 
     }
 
     return (
-        <div className="chatScreen">
-            <p className="chatScreen_timestamp">Chat with Ellen</p>
-            {messages.map(message => (
-                message.name ? (
-                    <div className="chatScreen_message">
-                        <Avatar
-                            className="chatScreen_image"
-                            alt={message.name}
-                            src={message.image}
-                        />
-                        <p className="chatScreen_text">{message.message}</p>
+        <>
+            <div className="chatBox">
+                <div className="chatBoxWrapper">
+                    <div className="chatBoxTop">
+                        {
+                            conversation?.messages.map(message => {
+                                return (<Message  {...message} own={message.sender === member.id} key={message.id} messageSender={message.sender}/>)
+                            })
+                        }
                     </div>
-                ) : (
-                    <div className="chatScreen_message">
-                        <p className="chatScreen_textOwn">{message.message}</p>
+                    <div className="chatBoxBottom">
+                        <textarea
+                            value={currentMessage}
+                            className="chatMessageInput"
+                            placeholder="Write something..."
+                            onChange={(e) => setCurrentMessage(e.target.value)}
+                        ></textarea>
+                        <button onClick={handleSendMessage} className="chatSubmitButton">Send</button>
                     </div>
-                )
-            ))}
-            <div>
-                <form className="chatScreen_input">
-                    <input
-                        value={input}
-                        onChange={e => setInput(e.target.value)}
-                        className="chatScreen_inputField"
-                        placeholder="Type a message..."
-                        type="text" />
-                    <button onClick={handleSend} type="submit" className="chatScreen_inputButton">SEND</button>
-                </form>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
-
-export default ConversationScreen
+export default ChatBox

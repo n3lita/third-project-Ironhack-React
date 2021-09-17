@@ -14,6 +14,7 @@
 
 .messageTop{
     display: flex;
+    align-items: center;
 }
 
 .messageText{
@@ -21,11 +22,14 @@
     border-radius: 20px;
     background-color: #4C269A;
     color: white;
-    max-width: 250px
+    max-width: 250px;
+    margin-bottom: 5px;
 }
 
 .messageBottom{
     font-size: 12px;
+    margin-bottom: 10px;
+    color: grey
 }
 
 .message.own{

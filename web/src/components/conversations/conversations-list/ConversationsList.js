@@ -1,40 +1,49 @@
-import { useEffect, useState } from "react"
-import ConversationRow from "../conversation-row/ConversationRow"
+import "./ConversationsList.css"
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext"
+import conversationsService from "../../../services/conversations-service";
+import { Link } from "react-router-dom";
 
-import conversationsService from "../../../services/conversations-service"
 
-function ConversationsList() {
+function Conversations() {
+
+    const { member } = useContext(AuthContext)
     const [conversations, setConversations] = useState([])
 
     useEffect(() => {
-        fetchConversations()
-    }, [])
-
-    function fetchConversations() {
         conversationsService.list()
-            .then((conversations) => {
+            .then(conversations => {
+              console.log(conversations)
+                conversations = conversations.map(conversation => {
+                    const friend = conversation.participants.find(participant => participant.id !== member.id)
+                    return {
+                        id: conversation.id,
+                        friend,
+                        lastMessage: conversation.messages[conversation.messages.length - 1]
+                    }
+                })
                 setConversations(conversations)
-                console.log(conversations)
             })
-            .catch(error => {
-                console.error(error)
-            })
-    }
+            .catch(error => console.log(error))
+    }, [member])
+
+
 
     return (
-        <div>
-            <div className="chats">
-                {conversations.map(conversation => 
-                                <ConversationRow
-                                key={conversation.participant[0]}
-                                name={conversation.participant[0].name}
-                                message={conversation.findOne({}, response => {conversation.messages.text.pop()})}
-                                timestamp="40 sec ago"
-                            />            
-                )}
-            </div>
+        <div className="conversation">
+            {conversations.map(conversation => (
+                <Link to={`/conversations/${conversation.id}`} key={conversation.id}>
+                    <div className="conversation_row">
+                        <img className="conversation_img" src={conversation.friend.profilePicture} alt="profile" />
+                        <div className="conversation_details">
+                            <span className="conversation_name">{conversation.friend.name}</span>
+                            <p className="conversation_message">{conversation?.lastMessage?.text}</p>
+                        </div>
+                    </div>
+                </Link>
+            )
+            )}
         </div>
     )
 }
-
-export default ConversationsList
+export default Conversations;
