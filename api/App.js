@@ -12,6 +12,7 @@ const cors = require('./config/cors.config');
 const session = require('./config/session.config');
 
 const app = express();
+app.use(express.static(`${__dirname}/react-app`));
 
 /** Middlewares */
 app.use(logger('dev'));
@@ -20,16 +21,19 @@ app.use(cors);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
-app.use(express.static(`${__dirname}/public`));
 
 
 /** Routes */
 const routes = require('./config/routes.config');
 app.use('/api', routes);
 
+app.get('/*', (req, res) => {
+    res.sendFile(`${__dirname}/react-app/index.html`);
+  })
+
+
 /** Error Handling */
 
-app.use((req, res, next) => next(createError(404, 'Route not found')))
 
 app.use((error, req, res, next) => {
     if(error instanceof mongoose.Error.ValidationError) {

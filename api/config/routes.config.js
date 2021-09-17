@@ -7,6 +7,8 @@ const secure = require('../middlewares/secure.mid')
 const meetups = require('../controllers/meetups.controller')
 const conversations = require('../controllers/conversations.controller')
 const upload = require('../config/multer.config')
+const createError = require('http-errors');
+
 
 router.get('/members', secure.isAuthenticated, members.list);
 router.get('/members/:memberId', secure.isAuthenticated, member.exists, members.detail);
@@ -33,6 +35,8 @@ router.get('/conversations', secure.isAuthenticated, conversations.list)
 router.delete('/conversations/:conversationId', secure.isAuthenticated, conversations.delete)
 router.post('/conversations/message/:conversationId', secure.isAuthenticated, conversations.createMessage)
 router.get('/conversations/:conversationId', secure.isAuthenticated, conversations.detail)
+
+router.use((req, res, next) => next(createError(404, 'Route not found')))
 
 module.exports = router;
 
