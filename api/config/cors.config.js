@@ -1,10 +1,15 @@
 const cors = require("cors");
 const createError = require("http-errors");
 
-var allowedOrigins = (process.env.CORS_ORIGINS || "http://localhost:3000").split(",")
-  .map(origin => origin.trim())
 
-var corsOptions = {
+let allowedOrigins = [];
+if(process.env.CORS_ORIGINS) {
+  allowedOrigins = process.env.CORS_ORIGINS.split(",")
+    .map(origin => origin.trim())
+
+}
+
+const corsOptions = {
   credentials: true,
   origin: function (origin, next) {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
@@ -15,4 +20,6 @@ var corsOptions = {
   }
 }
 
-module.exports = cors(corsOptions);
+module.exports = allowedOrigins.length > 0 ? 
+  cors(corsOptions) : 
+  (req, res, next) => next();
