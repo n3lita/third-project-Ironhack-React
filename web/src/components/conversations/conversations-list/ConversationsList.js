@@ -13,6 +13,7 @@ function Conversations() {
     const [conversations, setConversations] = useState([])
 
     useEffect(() => {
+        let isMounted = true;
         conversationsService.list()
             .then(conversations => {
                 conversations = conversations.map(conversation => {
@@ -23,9 +24,12 @@ function Conversations() {
                         lastMessage: conversation.messages[conversation.messages.length - 1]
                     }
                 })
-                setConversations(conversations)
+                if (isMounted) {
+                    setConversations(conversations)
+                }
             })
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
+            return () => isMounted = false
     }, [member])
 
 
