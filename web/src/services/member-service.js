@@ -14,11 +14,13 @@ const list = (interests) => {
 const getUser = (id) => http.get(`/members/${id}`);
 
 const register = (member) => {
+    console.log(member)
     const data = new FormData()
     data.append("name", member.name)
     data.append('email', member.email)
+    data.append('age', member.age)
     data.append('password', member.password)
-    data.append('profilePicture', member.profilePicture)
+    data.append('profilePicture', member.profilePicture[0])
 
     return http.post("/register", data)
 }

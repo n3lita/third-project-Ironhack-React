@@ -44,6 +44,7 @@ module.exports.delete = (req, res, next) => {
 //AUTH
 
 module.exports.register = (req, res, next) => {
+    console.log(req.file)
     Member.findOne({ email: req.body.email })
         .then(member => {
             if (member) {

@@ -54,12 +54,12 @@ function Register() {
                                 </div>
 
                                 <div>
-                                    <label for="file-upload" className="custom-file-upload">
-                                        <i class="fa fa-cloud-upload"></i> Select an image
-                                    </label>
-                                    <input id="file-upload" type="file" {...register("profilePicture")}
-                                        className={`form-control ${errors.profilePicture ? 'is-invalid' : ''}`} name="ProfilePicture" placeholder="Upload a Picture" />
+                                    <input id="file-upload" type="file" 
+                                        className={`form-control ${errors.profilePicture ? 'is-invalid' : ''}`} {...register("profilePicture")} />
                                     {errors.profilePicture && <div className="invalid-feedback">{errors.profilePicture.message}</div>}
+                                    <label htmlFor="file-upload" className="custom-file-upload">
+                                        <i className="fa fa-cloud-upload"></i> Select an image
+                                    </label>
                                 </div>
 
                                 <input type="submit" name="Register" disabled={Object.keys(errors).length !== 0} />
