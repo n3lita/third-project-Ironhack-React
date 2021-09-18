@@ -7,7 +7,7 @@ module.exports.list = (req, res, next) => {
     const criterial = {};
 
     const { interests } = req.query;
-    console.log(req.query);
+   // console.log(req.query);
     if (interests) {
         criterial.interests = { $in: interests };
     }
@@ -18,8 +18,6 @@ module.exports.list = (req, res, next) => {
 };
 
 module.exports.detail = (req, res, next) => {
-    console.log(req.user)
-    console.log(req.params)
     res.json(req.member);
 };
 

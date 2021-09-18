@@ -4,8 +4,9 @@ import { useParams } from 'react-router';
 import conversationsService from "../../../services/conversations-service";
 import "./ConversationScreen.css"
 import { AuthContext } from "../../contexts/AuthContext";
+import Header from "../../misc/header/Header";
 
-function ChatBox() {
+function ConversationScreen() {
     const { conversationId } = useParams()
     const [conversation, setConversation] = useState(null)
     const [currentMessage, setCurrentMessage] = useState("")
@@ -34,13 +35,12 @@ function ChatBox() {
 
     return (
         <>
+                  <Header backButton="/conversations" />
             <div className="chatBox">
                 <div className="chatBoxWrapper">
                     <div className="chatBoxTop">
                         {
                             conversation?.messages.map(message => {
-                                console.log("message", message)
-                                console.log("member", member.id)
                                 return (<Message  {...message} own={message.sender.id === member.id} key={message.id}/>)
                             })
                         }
@@ -59,4 +59,4 @@ function ChatBox() {
         </>
     )
 }
-export default ChatBox
+export default ConversationScreen

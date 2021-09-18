@@ -26,7 +26,7 @@ function Login() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        console.log(data)
+       // console.log(data)
         service.login(data.email, data.password)
             .then((member) => {
                 auth.login(member)
@@ -37,31 +37,31 @@ function Login() {
             })
     }
     return (
-        
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-6">
-                    {error && <div className="alert alert-danger">{error}</div>}
-                        <div className="card">
-                            <form onSubmit={handleSubmit} className="box">
-                                <h1>Login</h1>
-                                <p className="text-muted"> </p>
-                                <input type="text" name="email" placeholder="user@example.com" onChange={handleChange} value={data.email} />
-                                <input type="password" name="password" placeholder="Password" onChange={handleChange} value={data.password} />
-                                <input type="submit" name="submit" value="Login" />
-                                <div>
-                                    <a href={`${process.env.REACT_APP_API_BASE_URL}/authenticate/google`} className="btn btn-danger" role="button"><i className="fa fa-google" /> Login with Google</a>
-                                    <Link to="/register" className="btn btn-secondary" role="button">Register</Link>
-                                    </div>
 
-                                <div className="col-md-12">
-                                </div>
-                            </form>
-                        </div>
+        <div className="container">
+            <div className="row">
+                <div className="col-md-6">
+                    {error && <div className="alert alert-danger">{error}</div>}
+                    <div className="card">
+                        <form onSubmit={handleSubmit} className="box">
+                            <h1>Login</h1>
+                            <p className="text-muted"> </p>
+                            <input type="text" name="email" placeholder="user@example.com" onChange={handleChange} value={data.email} />
+                            <input type="password" name="password" placeholder="Password" onChange={handleChange} value={data.password} />
+                            <input type="submit" name="submit" value="Login" />
+                            <div>
+                                <a href={`${process.env.REACT_APP_API_BASE_URL}/authenticate/google`} className="btn btn-danger" role="button"><i className="fa fa-google" /> Login with Google</a>
+                                <Link to="/register" className="btn btn-secondary" role="button">Register</Link>
+                            </div>
+
+                            <div className="col-md-12">
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <img src="https://res.cloudinary.com/nela/image/upload/v1631618933/girlzfriends/assets/undraw_girl_just_wanna_have_fun_9d5u_vfw8ub.svg" alt="girls" />
             </div>
+            <img src="https://res.cloudinary.com/nela/image/upload/v1631618933/girlzfriends/assets/undraw_girl_just_wanna_have_fun_9d5u_vfw8ub.svg" alt="girls" />
+        </div>
     )
 }
 

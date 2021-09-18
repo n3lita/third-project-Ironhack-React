@@ -8,7 +8,6 @@ const list = (interests) => {
         param = param ? `${param}&` : '?';
         return `${param}interests=${interest}`;
     }, '');
-    console.log(interests);
     return  http.get(`/members${interests}`);
 };
 

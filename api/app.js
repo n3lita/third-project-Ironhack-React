@@ -60,7 +60,6 @@ app.use((error, req, res, next) => {
             return errors;
         }, {})
     }
-    console.log('data', data)
     res.status(error.status).json(data);
 });
 
