@@ -29,7 +29,7 @@ app.use('/api', routes);
 
 app.get('/*', (req, res) => {
     res.sendFile(`${__dirname}/react-app/index.html`);
-  })
+})
 
 
 /** Error Handling */
