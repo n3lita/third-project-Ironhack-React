@@ -34,9 +34,9 @@ function MemberDetail(props) {
             })
     }
     return member && (
-        <>
+        <div className= "member-detail">
             <Header />
-            <div className="memberDetail">
+            <div className="memberDetail-square">
                 <div className="detailContainer">
                     <div><h1>{member.name}</h1>
                         {member.age}</div>
@@ -56,7 +56,7 @@ function MemberDetail(props) {
                 <button className="chatButton" onClick={handleConversationClick}>say Hi!</button>
             </div>
             <Footer />
-        </>
+        </div>
     )
 }
 

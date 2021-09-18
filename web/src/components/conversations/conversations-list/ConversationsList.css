@@ -35,3 +35,7 @@
 .conversation_details > p{
     color: gray;
 }
+
+.conversation{
+    padding-top: 70px;
+}

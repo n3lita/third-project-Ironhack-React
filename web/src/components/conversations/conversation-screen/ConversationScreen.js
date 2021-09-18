@@ -15,10 +15,10 @@ function ChatBox() {
     useEffect(() => {
         const interval = setInterval(() => {
             conversationsService.getConversation(conversationId)
-                .then((conversation) => {
-                    setConversation(conversation)
-                })
-        },2000)
+            .then((conversation) => {
+                setConversation(conversation)
+            })
+        },1000)
         return() => clearInterval(interval)
     }, [conversationId, needReload])
 
@@ -39,7 +39,9 @@ function ChatBox() {
                     <div className="chatBoxTop">
                         {
                             conversation?.messages.map(message => {
-                                return (<Message  {...message} own={message.sender === member.id} key={message.id} messageSender={message.sender}/>)
+                                console.log("message", message)
+                                console.log("member", member.id)
+                                return (<Message  {...message} own={message.sender.id === member.id} key={message.id}/>)
                             })
                         }
                     </div>
