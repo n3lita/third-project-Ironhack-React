@@ -11,15 +11,18 @@ function MembersList() {
     const [interests, setInterests] = useState([])
 
     useEffect(() => {
+        let isMounted = true
         memberService.list(interests)
             .then(members => {
-                setMembers(members)
+                if (isMounted) {
+                    setMembers(members)
+                }
             })
             .catch(error => {
                 console.log(error)
             })
+        return () => isMounted = false;
     }, [interests])
-
 
     const handleFilterChange = (interests) => {
         setInterests(interests)
@@ -28,7 +31,7 @@ function MembersList() {
     return (
         members &&
         <>
-            <Header/>
+            <Header />
             <div className="memberList">
                 <MemberFilter onFilterChange={handleFilterChange} />
                 <div className="membercards">
@@ -41,7 +44,7 @@ function MembersList() {
                     </ul>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
     )
 }

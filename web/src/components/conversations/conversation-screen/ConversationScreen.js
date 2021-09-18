@@ -14,34 +14,38 @@ function ConversationScreen() {
     const { member } = useContext(AuthContext)
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            conversationsService.getConversation(conversationId)
-            .then((conversation) => {
-                setConversation(conversation)
-            })
-        },1000)
-        return() => clearInterval(interval)
+        let isMounted = true
+        if (isMounted) {
+            const interval = setInterval(() => {
+                conversationsService.getConversation(conversationId)
+                    .then((conversation) => {
+                        setConversation(conversation)
+                    })
+            }, 1000)
+            return () => clearInterval(interval)
+        }
+        return () => isMounted = false
     }, [conversationId, needReload])
 
     const handleSendMessage = (e) => {
         e.preventDefault()
 
         conversationsService.createMessage(conversationId, currentMessage)
-        .then(() => {
-            setNeedReload(!needReload)
-            setCurrentMessage("")
-        }) 
+            .then(() => {
+                setNeedReload(!needReload)
+                setCurrentMessage("")
+            })
     }
 
     return (
         <>
-                  <Header backButton="/conversations" />
+            <Header backButton="/conversations" />
             <div className="chatBox">
                 <div className="chatBoxWrapper">
                     <div className="chatBoxTop">
                         {
                             conversation?.messages.map(message => {
-                                return (<Message  {...message} own={message.sender.id === member.id} key={message.id}/>)
+                                return (<Message  {...message} own={message.sender.id === member.id} key={message.id} />)
                             })
                         }
                     </div>
