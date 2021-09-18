@@ -34,7 +34,7 @@ function MemberDetail(props) {
             })
     }
     return member && (
-        <div className= "member-detail">
+        <div className="member-detail">
             <Header />
             <div className="memberDetail-square">
                 <div className="detailContainer">

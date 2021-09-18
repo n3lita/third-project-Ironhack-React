@@ -25,9 +25,7 @@ function App() {
         </PrivateRoute>
 
         <PrivateRoute exact path="/">
-          <Header/>
           <MembersList/>
-          <Footer/>
         </PrivateRoute>
 
         <PrivateRoute exact path="/conversations/:conversationId">
