@@ -37,6 +37,12 @@ function Register() {
                                     {errors.name && <div className="invalid-feedback">{errors.name.message}</div>}
                                 </div>
 
+                                <div><input type="number" {...register("age", { required: "Age is required" })} name="age" placeholder="Age"
+                                    className={`form-control ${errors.name ? 'is-invalid' : ''}`} />
+                                    {errors.name && <div className="invalid-feedback">{errors.name.message}</div>}
+                                </div>
+
+
                                 <div><input type="email" {...register("email", { required: "Email is required" })}
                                     className={`form-control ${errors.email ? 'is-invalid' : ''}`} name="email" placeholder="user@example.com" />
                                     {errors.email && <div className="invalid-feedback">{errors.email.message}</div>}

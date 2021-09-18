@@ -18,7 +18,9 @@ input[type="file"] {
     display: none;
 }
 
-.custom-file-upload {
+.custom-file-upload, 
+.box input[type="email"], 
+.box input[type="number"] {
     border: 0;
     background: none;
     display: block;
@@ -26,7 +28,7 @@ input[type="file"] {
     text-align: center;
     border: 2px solid #4C269A;
     padding: 5px 5px;
-    width: 200px;
+    width: 250px;
     outline: none;
     color: #191C32;
     border-radius: 24px;
