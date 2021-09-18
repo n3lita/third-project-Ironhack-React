@@ -38,7 +38,12 @@ module.exports.delete = (req, res, next) => {
 
 module.exports.detail = (req, res, next) => {
     Conversation.findById(req.params.conversationId)
-        .populate("messages")
+        .populate({
+            path: "messages",
+            populate: {
+                path: "sender"
+            }
+        })
         .then(conversation => res.status(200).json(conversation))
         .catch(next)
 }

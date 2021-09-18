@@ -26,7 +26,7 @@ function MembersList() {
 
     return (
         members &&
-        <>
+        <div className="memberList">
             <MemberFilter onFilterChange={handleFilterChange}/>
             <div className="membercards">
                 <ul className="memberContainer">
@@ -37,7 +37,7 @@ function MembersList() {
                     )}
                 </ul>
             </div>
-        </>
+        </div>
     )
 }
 

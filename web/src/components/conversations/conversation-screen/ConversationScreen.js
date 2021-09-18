@@ -15,9 +15,9 @@ function ChatBox() {
     useEffect(() => {
         const interval = setInterval(() => {
             conversationsService.getConversation(conversationId)
-            .then((conversation) => {
-                setConversation(conversation)
-            })
+                .then((conversation) => {
+                    setConversation(conversation)
+                })
         },2000)
         return() => clearInterval(interval)
     }, [conversationId, needReload])

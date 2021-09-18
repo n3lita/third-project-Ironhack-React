@@ -8,6 +8,8 @@
     border-bottom: 2px solid #FFDFAF;
     background-color: #E4D7FF;
     height:70px;
+    position: fixed;
+    width: 100%;
 }
 
 .header_logo {

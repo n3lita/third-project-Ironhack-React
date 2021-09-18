@@ -1,3 +1,7 @@
+.memberList{
+    padding-top: 75px;
+}
+
 .memberContainer {
     display: flex;
     justify-content: center;
