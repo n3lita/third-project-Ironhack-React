@@ -39,7 +39,7 @@ function Register() {
 
                                 <div><input type="number" {...register("age", { required: "Age is required" })} name="age" placeholder="Age"
                                     className={`form-control ${errors.name ? 'is-invalid' : ''}`} />
-                                    {errors.name && <div className="invalid-feedback">{errors.name.message}</div>}
+                                    {errors.age && <div className="invalid-feedback">{errors.age.message}</div>}
                                 </div>
 
 
